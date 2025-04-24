@@ -203,7 +203,6 @@
 
 
 
-<!-- Enhanced Newsletter Section -->
 <section class="newsletter-section">
   <div class="newsletter-container">
     <div class="newsletter-content">
@@ -218,19 +217,11 @@
     </div>
     <div class="newsletter-form-container">
       <img src="static/images/newsletter.jpg" alt="A peaceful desk setup with a notebook and cup of tea" class="newsletter-image">
- 
-      
-<form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
-  <!-- Keep your existing input fields -->
-  <input type="email" id="email-..." name="email" required>
-  <input type="submit" value="Subscribe">
-  <!-- Add these hidden fields -->
-  <input type="hidden" name="tag" value="[location]-signup">
-  <input type="hidden" value="1" name="embed"/>
-</form>
-      
-      
-    </div>
+
+      <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
+        <input type="email" id="bd-email-home" name="email" placeholder="Enter your email" required aria-label="Email Address"> <input type="submit" value="Subscribe" class="button"> <input type="hidden" name="tag" value="homepage-signup"> <input type="hidden" value="1" name="embed"/>
+      </form>
+      </div>
   </div>
 </section>
 
