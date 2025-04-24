@@ -104,18 +104,12 @@
   </article>
   
   <div class="newsletter-post-signup category-section">
-    <h3>Enjoyed This Article?</h3>
-    <p>Subscribe to my newsletter for more thoughtful content on digital wellbeing and intentional living.</p>
- 
- <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
-  <!-- Keep your existing input fields -->
-  <input type="email" id="email-..." name="email" required>
-  <input type="submit" value="Subscribe">
-  <!-- Add these hidden fields -->
-  <input type="hidden" name="tag" value="[location]-signup">
-  <input type="hidden" value="1" name="embed"/>
-</form>
- 
- 
-  </div>
+   
+   <div class="newsletter-signup-block"> <h3>Enjoyed This Article?</h3>
+  <p>Subscribe to the Measured Mile newsletter for more thoughtful content on digital wellbeing and intentional living.</p>
+  <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
+    <input type="email" id="bd-email-post-{{ page.slug }}" name="email" placeholder="Enter your email" required aria-label="Email Address"> <input type="submit" value="Subscribe" class="button"> <input type="hidden" name="tag" value="post-{{ page.slug }}-signup"> <input type="hidden" value="1" name="embed"/>
+  </form>
+</div>
+</div>
 {% endblock %}

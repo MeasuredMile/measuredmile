@@ -16,26 +16,24 @@
           {% endif %}
         </div>
       {% endif %}
+        
     </header>
     
     <div class="page-content">
       {{ content|safe }}
     </div>
   </article>
-  
   {% if page.show_newsletter_signup|default(true) %}
-    <div class="newsletter-page-signup category-section">
-      <h3>Stay Connected</h3>
-      <p>Join my newsletter for thoughtful content on digital wellbeing and intentional living.</p>
-      
-      <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
-  <input type="email" id="email-..." name="email" required>
-  <input type="submit" value="Subscribe">
-  <input type="hidden" name="tag" value="[location]-signup">
-  <input type="hidden" value="1" name="embed"/>
-</form>
-      
-      
-    </div>
-  {% endif %}
+  <div class="newsletter-signup-block"> <h3>Stay Connected</h3>
+    <p>Join the Measured Mile newsletter for thoughtful content on digital wellbeing and intentional living.</p>
+    <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
+      <input type="email" id="bd-email-page" name="email" placeholder="Enter your email" required aria-label="Email Address">
+      <input type="submit" value="Subscribe" class="button"> <input type="hidden" name="tag" value="page-signup"> <input type="hidden" value="1" name="embed"/>
+    </form>
+  </div>
+{% endif %}
+
+  
+  
+  
 {% endblock %}
