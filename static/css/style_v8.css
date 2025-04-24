@@ -50,12 +50,6 @@
 /* BASE STYLES      */
 /* ---------------- */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box; /* ADDED for better layout control */
-}
-
 body {
   background-color: var(--primary-bg);
   color: var(--body-text);
@@ -419,19 +413,6 @@ a:hover {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Active state */
 .nav-link.active {
   border-bottom: 2px solid var(--slate-blue);
@@ -780,61 +761,37 @@ a:hover {
 .newsletter-form {
   width: 100%;
   display: flex;
-  flex-direction: column; /* Default stack */
+  flex-direction: column;
   gap: var(--space-xs);
 }
 
-/* Desktop form layout */
-@media (min-width: 601px) { /* Apply horizontal layout above 600px */
-  .newsletter-form {
-    flex-direction: row; /* Align input and button horizontally */
-    align-items: center; /* Vertically align items */
-    gap: 0.5rem; /* Space between input and button */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    max-width: 500px; /* Optional: constrain max width */
-    /* margin-top: 1rem; */ /* Add some space above the form */
-  }
-
-  .newsletter-form input[type="email"] {
-    flex-grow: 1; /* Allow input to take available space */
-    min-width: 200px; /* Ensure it doesn't get too small */
-  }
-
-  .newsletter-form input[type="submit"].button {
-    flex-shrink: 0; /* Prevent button from shrinking */
-    white-space: nowrap; /* Prevent text wrapping */
-    width: auto; /* Revert to auto width */
-  }
-}
-
-
 .newsletter-form input[type="email"] {
-  padding: 0.75rem 1rem; /* Adjust padding for better feel */
-  border: 1px solid #ccc; /* Standard border */
-  border-radius: 4px; /* Slightly rounded corners */
-  font-size: 1rem; /* Match base font size */
-  line-height: 1.5;
+  padding: 0.75rem;
+  border: 1px solid rgba(127, 154, 178, 0.2);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-family: 'Inter', 'Open Sans', Arial, sans-serif;
   background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075); /* Subtle inner shadow */
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  width: 100%; /* Default full width for stacking */
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  width: 100%;
 }
 
 .newsletter-form input[type="email"]:focus {
-  border-color: #555; /* Darker border on focus */
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(85, 85, 85, 0.25); /* Focus ring like buttons */
+  border-color: var(--slate-blue);
+  box-shadow: 0 0 0 3px rgba(127, 154, 178, 0.2);
+  outline: none;
 }
 
 .newsletter-form .button {
-  width: 100%; /* Default full width for stacking */
-  margin-top: 0; /* Remove margin-top from original style */
-  /* Inherits base button styles */
-  padding-top: 0.75rem; /* Match email input padding */
-  padding-bottom: 0.75rem; /* Match email input padding */
+  width: 100%;
+  margin-top: var(--space-xs);
 }
 
-/* Responsive adjustments for newsletter */
+
+
+
+
+/* Responsive adjustments */
 @media (max-width: 900px) {
   .newsletter-container {
     grid-template-columns: 1fr;
@@ -843,22 +800,11 @@ a:hover {
 
   .newsletter-content {
     padding-right: 0;
-    text-align: center; /* Center text when stacked */
   }
 
   .newsletter-image {
     max-width: 250px;
   }
-
-  .newsletter-benefits {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 400px; /* Constrain list width */
-    text-align: left; /* Keep list items left-aligned */
-  }
-   .newsletter-benefits li {
-      justify-content: flex-start; /* Align items start */
-   }
 }
 
 @media (max-width: 600px) {
@@ -869,9 +815,6 @@ a:hover {
   .newsletter-content h2 {
     font-size: calc(var(--text-xl) * 0.85);
   }
-
-  /* Styles for stacked form already defined above */
-
 }
 
 /* ---------------- */
@@ -1028,7 +971,7 @@ footer {
 
   .featured-grid,
   .featured-main,
-  .newsletter-container { /* This handles the grid collapse */
+  .newsletter-container {
     grid-template-columns: 1fr;
   }
 
@@ -1056,44 +999,6 @@ footer {
     /* --- REMOVED HEIGHT --- */
     /* height: 150px; */
   }
-}
-
-@media (max-width: 768px) {
-  /* Mobile navigation styles are already above */
-
-  /* Ensure the container holding the image and form behaves */
-  .newsletter-section .newsletter-form-container {
-     width: 100%; /* Make sure it takes full width */
-     max-width: 100%; /* Prevent it exceeding screen width */
-     padding-left: 0; /* Remove padding if it pushes content */
-     padding-right: 0;/* Remove padding if it pushes content */
-     /* Keep flex settings for centering image/form */
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-  }
-
-  /* These rules were moved outside the media query as defaults */
-  /* .newsletter-form { ... } */
-  /* .newsletter-form input[type="email"], */
-  /* .newsletter-form input[type="submit"].button { ... } */
-
-
-  /* Optional: Adjust padding on the main section if needed */
-  .newsletter-section {
-     padding-left: var(--space-sm); /* Example: adjust padding */
-     padding-right: var(--space-sm); /* Example: adjust padding */
-  }
-
-  /* Remove the potentially conflicting rule on newsletter-container */
-  /* It should remain grid/block based on 900px media query */
-  /*
-  .newsletter-section .newsletter-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  */
-
 }
 
 @media (max-width: 600px) {
@@ -1128,7 +1033,9 @@ footer {
     font-size: calc(var(--text-base) * 0.95);
   } */
 
-  /* .newsletter-section styles moved above to 600px */
+  .newsletter-section {
+    padding: var(--space-md);
+  }
 
   .featured-text h3 {
     font-size: 1.2rem;
@@ -1172,8 +1079,43 @@ footer {
 
 
 /* --- Newsletter Form Enhancements --- */
-/* These general styles were integrated into the main .newsletter-form rules above */
 
+.newsletter-form {
+  display: flex; /* Align input and button horizontally */
+  align-items: center; /* Vertically align items */
+  gap: 0.5rem; /* Space between input and button */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  max-width: 500px; /* Optional: constrain max width */
+  /* margin-top: 1rem; */ /* Add some space above the form */
+}
+
+.newsletter-form input[type="email"] {
+  flex-grow: 1; /* Allow input to take available space */
+  padding: 0.75rem 1rem; /* Adjust padding for better feel */
+  border: 1px solid #ccc; /* Standard border */
+  border-radius: 4px; /* Slightly rounded corners */
+  font-size: 1rem; /* Match base font size */
+  line-height: 1.5;
+  min-width: 200px; /* Ensure it doesn't get too small */
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075); /* Subtle inner shadow */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.newsletter-form input[type="email"]:focus {
+  border-color: #555; /* Darker border on focus */
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(85, 85, 85, 0.25); /* Focus ring like buttons */
+}
+
+/* Apply button styles to the submit input */
+.newsletter-form input[type="submit"].button {
+  /* Inherits styles from .button */
+  /* Add any specific overrides if needed */
+  padding-top: 0.75rem; /* Match email input padding */
+  padding-bottom: 0.75rem; /* Match email input padding */
+  white-space: nowrap; /* Prevent text wrapping */
+  flex-shrink: 0; /* Prevent button from shrinking */
+}
 
 /* --- Layout for Newsletter Sections on About/Page --- */
 
@@ -1205,128 +1147,27 @@ footer {
 /* Adjustments for the homepage newsletter section if needed */
 .newsletter-section .newsletter-form-container .newsletter-form {
   margin-top: 1rem; /* Ensure space below the image */
-  /* max-width: none; */ /* Let mobile styles control max-width */
+  max-width: none; /* Override max-width if needed here */
 }
 
-/* --- Responsive Adjustments for Newsletter Block --- */
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-  /* These newsletter form rules were moved to the main form styles */
-  /* .newsletter-form { ... } */
-  /* .newsletter-form input[type="email"] { ... } */
-  /* .newsletter-form input[type="submit"].button { ... } */
+  .newsletter-form {
+    flex-direction: column; /* Stack vertically on small screens */
+    align-items: stretch; /* Make input/button full width */
+  }
+
+  .newsletter-form input[type="email"] {
+     min-width: 0; /* Reset min-width */
+  }
+
+   .newsletter-form input[type="submit"].button {
+    width: 100%; /* Make button full width */
+  }
 
   .newsletter-signup-block {
      max-width: 100%; /* Allow full width on smaller screens */
      padding: 1rem;
   }
-
-  /* These rules were moved to the main newsletter section mobile styles */
-  /* .newsletter-section .newsletter-container { ... } */
-  /* .newsletter-section .newsletter-content { ... } */
-  /* .newsletter-section .newsletter-form-container { ... } */
-  /* .newsletter-section .newsletter-image { ... } */
-  /* .newsletter-section .newsletter-form { ... } */
-  /* .newsletter-benefits li { ... } */
 }
 
-
-/* REMOVED REDUNDANT/MOVED STYLES FROM THE END */
-
-
-/* --- Enhanced Newsletter Signup Block --- */
-
-.newsletter-signup-block {
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: flex-start; /* Align items to the start (left) */
-  gap: var(--space-sm); /* Adjusted gap */
-  padding: var(--space-lg); /* Increased padding */
-  border: 1px solid rgba(127, 154, 178, 0.15); /* Slightly more visible border */
-  border-radius: var(--radius-lg); /* Use larger radius */
-  background-color: white; /* Use white or a very light card background */
-  box-shadow: var(--shadow-sm); /* Add subtle shadow */
-  max-width: 600px; /* Keep constrained width */
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  margin-left: auto; /* Center the block on wider screens */
-  margin-right: auto; /* Center the block on wider screens */
-}
-
-/* Style the heading within the block */
-.newsletter-signup-block h3 { /* Assuming 'Subscribe Here' is an H3 */
-  margin-top: 0; /* Remove default top margin */
-  margin-bottom: var(--space-xs); /* Add small space below heading */
-  font-size: var(--text-lg); /* Use appropriate heading size */
-  color: var(--primary-text);
-  font-family: 'Nunito', 'Inter', sans-serif; /* Match other headings */
-  /* Remove the decorative line if it appears */
-  /* &::after { display: none; } */ /* Uncomment this if h2::after style is inherited */
-}
-
-/* Style the descriptive paragraph */
-.newsletter-signup-block p {
-  margin-bottom: var(--space-md); /* Space before the form */
-  font-size: var(--text-base); /* Ensure readable size */
-  color: var(--body-text);
-  max-width: none; /* Allow text to fill container */
-  line-height: 1.6; /* Adjust line height if needed */
-}
-
-/* Style the form within the block */
-.newsletter-signup-block .newsletter-form {
-  width: 100%; /* Ensure form takes full width */
-  display: flex;
-  flex-direction: column; /* Keep stacking */
-  gap: var(--space-sm); /* Increase gap between input and button */
-}
-
-/* Style the email input */
-.newsletter-signup-block .newsletter-form input[type="email"] {
-  /* Inherits base styles, add refinements */
-  padding: 0.85rem 1rem; /* Slightly larger padding */
-  background-color: #fff; /* Ensure white background */
-  border: 1px solid #ccc; /* Keep standard border */
-  border-radius: var(--radius-md); /* Use standard radius */
-  font-size: var(--text-base); /* Match base font size */
-  line-height: 1.5; /* Ensure text is vertically centered */
-}
-
-.newsletter-signup-block .newsletter-form input[type="email"]:focus {
-  border-color: var(--slate-blue); /* Use primary color for focus */
-  box-shadow: 0 0 0 3px rgba(127, 154, 178, 0.2); /* Focus ring */
-  outline: none; /* Remove default outline */
-}
-
-/* Style the submit button */
-.newsletter-signup-block .newsletter-form .button {
-  /* Inherits base button styles */
-  width: 100%; /* Full width */
-  padding-top: 0.85rem; /* Match email input padding */
-  padding-bottom: 0.85rem; /* Match email input padding */
-  font-size: 1.1rem; /* Slightly larger font */
-  font-weight: 600;
-  /* Ensure it uses primary color */
-  background-color: var(--slate-blue);
-  color: white !important;
-  border: none; /* Ensure no border */
-}
-
-.newsletter-signup-block .newsletter-form .button:hover {
-  background-color: var(--terracotta); /* Use secondary color on hover */
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-/* Responsive adjustments specifically for this block */
-@media (max-width: 768px) {
-  .newsletter-signup-block {
-     max-width: 100%; /* Allow full width */
-     padding: var(--space-md); /* Adjust padding */
-     margin-left: 0; /* Remove centering */
-     margin-right: 0; /* Remove centering */
-  }
-
-  .newsletter-signup-block h3 {
-      font-size: calc(var(--text-lg) * 0.9); /* Slightly smaller heading */
-  }
-}

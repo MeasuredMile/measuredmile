@@ -8,13 +8,15 @@
 
   
   
-
+    
+  
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
+  
   <link rel="stylesheet" href="../static/css/style.css">
   <link href="../static/css/navigation.css" rel="stylesheet">
 
@@ -27,41 +29,36 @@
 
   
 
+  
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" as="style">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
 
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
 
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
 
-
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
-
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
-
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-
-  </head>
+</head>
 
 <body>
   <div class="container">
     <header>
       <div class="site-header-content">
-        <img src="../static/images/monogram-logo.png" alt="Your Monogram Logo" class="monogram-logo">
-        </div>
+        
+        
+        <a href="../index.html" aria-label="Homepage">
+          <img src="../static/images/monogram-logo.png" alt="Measured Mile Logo" class="monogram-logo">
+        </a>
+        
+      </div>
 
+      
       <div class="main-navigation">
   <div class="horizontal-menu">
     <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
@@ -89,20 +86,39 @@
 
     <main>
       
+      
   <article class="page">
     <header class="page-header">
       <h1 class="page-title">Join The Measured Mile Newsletter</h1>
       
       
-        <div class="featured-image-container">
-          <img src="../static/images/newsletter.jpg" alt="A person writing in a notebook" class="image-with-border">
-          
-        </div>
-      
+        
     </header>
     
     <div class="page-content">
-      <h2 id="stay-connected-on-your-digital-wellbeing-journey">Stay Connected on Your Digital Wellbeing Journey</h2>
+      <section class="newsletter-section">
+  <div class="newsletter-container">
+    <div class="newsletter-content">
+      <h2>Join My Newsletter</h2>
+      <p>Get monthly insights on digital wellbeing, technology ethics, and intentional living delivered directly to your inbox. No algorithms, no tracking, just human-to-human thoughts.</p>
+      <ul class="newsletter-benefits">
+        <li><i class="fas fa-check"></i> Curated news and resources you won't find on the blog</li>
+        <li><i class="fas fa-check"></i> Early access to new guides and articles</li>
+        <li><i class="fas fa-check"></i> A Community of Likeminded People</li>
+      </ul>
+      <p class="newsletter-promise"><i class="fas fa-shield-alt"></i> I respect your privacy and will never share your email. Unsubscribe anytime.</p>
+    </div>
+    <div class="newsletter-form-container">
+      <img src="/static/images/newsletter.jpg" alt="A peaceful desk setup with a notebook and cup of tea" class="newsletter-image">
+
+      <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
+        <input type="email" id="bd-email-home" name="email" placeholder="Enter your email" required aria-label="Email Address"> <input type="submit" value="Subscribe" class="button"> <input type="hidden" name="tag" value="homepage-signup"> <input type="hidden" value="1" name="embed"/>
+      </form>
+      </div>
+  </div>
+</section>
+
+<h2 id="stay-connected-on-your-digital-wellbeing-journey">Stay Connected on Your Digital Wellbeing Journey</h2>
 <p>Join my monthly newsletter for practical guidance on:</p>
 <ul>
 <li>Reclaiming your attention from digital distractions</li>
@@ -117,15 +133,6 @@
 <p>&ldquo;Your newsletter is the only one I actually look forward to reading each month. Practical advice without the guilt trip.&rdquo; — Jamie T.</p>
 <p>&ldquo;I&rsquo;ve made several positive changes to my tech habits thanks to your thoughtful recommendations.&rdquo; — Alex K.</p>
 </blockquote>
-<h3 id="join-the-community">Join The Community</h3>
-<form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
-  <!-- Keep your existing input fields -->
-  <input type="email" id="email-..." name="email" required>
-  <input type="submit" value="Subscribe">
-  <!-- Add these hidden fields -->
-  <input type="hidden" name="tag" value="[location]-signup">
-  <input type="hidden" value="1" name="embed"/>
-</form>
 <h3 id="frequency-content">Frequency &amp; Content</h3>
 <p>The newsletter arrives once a month and takes about 5 minutes to read. Each edition includes:</p>
 <ol>
@@ -137,6 +144,17 @@
 <p>No spam, no selling your data, and no overwhelming you with content.</p>
     </div>
   </article>
+  
+  <div class="newsletter-signup-block"> <h3>Stay Connected</h3>
+    <p>Join the Measured Mile newsletter for thoughtful content on digital wellbeing and intentional living.</p>
+    <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
+      <input type="email" id="bd-email-page" name="email" placeholder="Enter your email" required aria-label="Email Address">
+      <input type="submit" value="Subscribe" class="button"> <input type="hidden" name="tag" value="page-signup"> <input type="hidden" value="1" name="embed"/>
+    </form>
+  </div>
+
+
+  
   
   
 
@@ -155,6 +173,7 @@
     </footer>
   </div>
 
+  
   
   <script src="../static/js/navigation.js"></script>
 </body>
