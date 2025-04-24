@@ -89,21 +89,20 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2em;
   margin-bottom: 0.75em;
   line-height: 1.25;
-  /* --- HEADING FONT FAMILY --- */
-  /* Nunito is a friendly, modern sans-serif font. */
-  /* Inter is used as a fallback, followed by generic sans-serif. */
-  font-family: 'Nunito', 'Inter', sans-serif; /* Changed from Poppins to Nunito */
+  /* --- UPDATED FONT FAMILY FOR HEADINGS --- */
+  font-family: 'Poppins', 'Inter', sans-serif; /* Use Poppins for headings */
   color: var(--primary-text);
-  font-weight: 700; /* Keeps headings bold */
+  font-weight: 700; /* Keep headings bold */
 }
 
-/* Specific heading size adjustments (font-family is inherited from above) */
+/* Note: h1 styling might still be used elsewhere (e.g., page titles, hero) */
+/* Keep the base h1 style, but the specific .site-title h1 is removed below */
 h1 {
   font-size: var(--text-2xl);
   color: var(--primary-text);
-  text-align: center;
+  text-align: center; /* Keep default center alignment for other H1s */
   margin-bottom: 0.5em;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.02em; /* Keep existing letter spacing for H1 */
 }
 
 h2 {
@@ -112,7 +111,6 @@ h2 {
   margin-bottom: 0.75em;
 }
 
-/* Decorative line after h2 */
 h2::after {
   content: "";
   display: block;
@@ -127,22 +125,21 @@ h3 {
   font-size: var(--text-lg);
   margin-top: 1.5em;
   margin-bottom: 0.5em;
+  /* Removed specific Playfair Display font-family */
 }
 
 h4 {
   font-size: calc(var(--text-base) * 1.15);
   font-weight: 700;
   color: var(--primary-text);
+  /* Removed specific Playfair Display font-family */
 }
 
 p {
   margin-bottom: 1.5em;
-  max-width: 70ch; /* Limits line length for readability */
+  max-width: 70ch;
   line-height: 1.7;
-  /* Body text uses 'Inter' defined in the body style */
 }
-
-
 
 /* Add clearfix utility class - apply to the PARENT of the floated element if needed */
 .clearfix::after {
@@ -158,15 +155,6 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
-
-
-
-
-
-
-
-
-
 
 /* ---------------- */
 /* LINKS & BUTTONS  */
@@ -755,9 +743,6 @@ a:hover {
   box-shadow: var(--shadow-sm);
 }
 
-
-
-
 .newsletter-form {
   width: 100%;
   display: flex;
@@ -786,10 +771,6 @@ a:hover {
   width: 100%;
   margin-top: var(--space-xs);
 }
-
-
-
-
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
@@ -1074,100 +1055,3 @@ footer {
   }
 
 }
-
-
-
-
-/* --- Newsletter Form Enhancements --- */
-
-.newsletter-form {
-  display: flex; /* Align input and button horizontally */
-  align-items: center; /* Vertically align items */
-  gap: 0.5rem; /* Space between input and button */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  max-width: 500px; /* Optional: constrain max width */
-  /* margin-top: 1rem; */ /* Add some space above the form */
-}
-
-.newsletter-form input[type="email"] {
-  flex-grow: 1; /* Allow input to take available space */
-  padding: 0.75rem 1rem; /* Adjust padding for better feel */
-  border: 1px solid #ccc; /* Standard border */
-  border-radius: 4px; /* Slightly rounded corners */
-  font-size: 1rem; /* Match base font size */
-  line-height: 1.5;
-  min-width: 200px; /* Ensure it doesn't get too small */
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075); /* Subtle inner shadow */
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.newsletter-form input[type="email"]:focus {
-  border-color: #555; /* Darker border on focus */
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(85, 85, 85, 0.25); /* Focus ring like buttons */
-}
-
-/* Apply button styles to the submit input */
-.newsletter-form input[type="submit"].button {
-  /* Inherits styles from .button */
-  /* Add any specific overrides if needed */
-  padding-top: 0.75rem; /* Match email input padding */
-  padding-bottom: 0.75rem; /* Match email input padding */
-  white-space: nowrap; /* Prevent text wrapping */
-  flex-shrink: 0; /* Prevent button from shrinking */
-}
-
-/* --- Layout for Newsletter Sections on About/Page --- */
-
-/* Use a wrapper for the form and text in specific sections */
-.newsletter-signup-block {
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: flex-start; /* Align items to the start (left) */
-  gap: 1rem; /* Space between heading, paragraph, and form */
-  padding: 1.5rem; /* Add some padding */
-  border: 1px solid #eee; /* Optional: subtle border */
-  border-radius: 5px; /* Optional: rounded corners */
-  background-color: #f9f9f9; /* Optional: light background */
-  max-width: 600px; /* << Constrain the width */
-  margin-top: 2rem; /* Space above the block */
-  margin-bottom: 2rem; /* Space below the block */
-}
-
-/* Optional: Center the block if desired */
-/*
-.newsletter-page-signup,
-.newsletter-post-signup,
-.newsletter-category-signup {
- display: flex;
- justify-content: center;
-}
-*/
-
-/* Adjustments for the homepage newsletter section if needed */
-.newsletter-section .newsletter-form-container .newsletter-form {
-  margin-top: 1rem; /* Ensure space below the image */
-  max-width: none; /* Override max-width if needed here */
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-  .newsletter-form {
-    flex-direction: column; /* Stack vertically on small screens */
-    align-items: stretch; /* Make input/button full width */
-  }
-
-  .newsletter-form input[type="email"] {
-     min-width: 0; /* Reset min-width */
-  }
-
-   .newsletter-form input[type="submit"].button {
-    width: 100%; /* Make button full width */
-  }
-
-  .newsletter-signup-block {
-     max-width: 100%; /* Allow full width on smaller screens */
-     padding: 1rem;
-  }
-}
-

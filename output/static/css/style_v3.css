@@ -53,7 +53,6 @@
 body {
   background-color: var(--primary-bg);
   color: var(--body-text);
-  /* Base font remains Inter */
   font-family: 'Inter', 'Open Sans', Arial, sans-serif;
   margin: 0;
   padding: 20px;
@@ -89,15 +88,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2em;
   margin-bottom: 0.75em;
   line-height: 1.25;
-  /* --- HEADING FONT FAMILY --- */
-  /* Nunito is a friendly, modern sans-serif font. */
-  /* Inter is used as a fallback, followed by generic sans-serif. */
-  font-family: 'Nunito', 'Inter', sans-serif; /* Changed from Poppins to Nunito */
+  font-family: 'Playfair Display', 'Palatino Linotype', serif;
   color: var(--primary-text);
-  font-weight: 700; /* Keeps headings bold */
+  font-weight: 700;
 }
 
-/* Specific heading size adjustments (font-family is inherited from above) */
 h1 {
   font-size: var(--text-2xl);
   color: var(--primary-text);
@@ -112,7 +107,6 @@ h2 {
   margin-bottom: 0.75em;
 }
 
-/* Decorative line after h2 */
 h2::after {
   content: "";
   display: block;
@@ -127,22 +121,21 @@ h3 {
   font-size: var(--text-lg);
   margin-top: 1.5em;
   margin-bottom: 0.5em;
+  font-family: 'Playfair Display', serif;
 }
 
 h4 {
   font-size: calc(var(--text-base) * 1.15);
   font-weight: 700;
   color: var(--primary-text);
+  font-family: 'Playfair Display', serif;
 }
 
 p {
   margin-bottom: 1.5em;
-  max-width: 70ch; /* Limits line length for readability */
+  max-width: 70ch;
   line-height: 1.7;
-  /* Body text uses 'Inter' defined in the body style */
 }
-
-
 
 /* Add clearfix utility class - apply to the PARENT of the floated element if needed */
 .clearfix::after {
@@ -158,15 +151,6 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
-
-
-
-
-
-
-
-
-
 
 /* ---------------- */
 /* LINKS & BUTTONS  */
@@ -197,7 +181,6 @@ a:hover {
   cursor: pointer;
   font-size: 1.05rem;
   box-shadow: var(--shadow-sm);
-  /* Button font remains Inter */
   font-family: 'Inter', 'Open Sans', Arial, sans-serif;
 }
 
@@ -225,35 +208,36 @@ a:hover {
 /* HEADER ELEMENTS  */
 /* ---------------- */
 
-/* Container for the monogram */
-.site-header-content {
-  text-align: center; /* Center the content inside */
-  margin-bottom: 15px; /* Space below the header content block */
-  /* Add some top margin for spacing */
-  margin-top: var(--space-md);
+.site-title {
+  font-family: 'Playfair Display', 'Palatino Linotype', serif;
+  font-weight: 600;
+  font-size: var(--text-2xl);
+  margin-bottom: 5px;
+  text-align: center;
+  letter-spacing: -0.01em;
 }
 
-.monogram-logo {
-  display: block; /* Make it a block element to center */
-  /* --- SET WIDTH ONLY --- */
-  width: 500px; /* Define the desired width */
-  /* --- REMOVED HEIGHT --- */
-  /* height: 180px; */ /* Removed fixed height */
-  height: auto; /* Explicitly set height to auto (default behavior) */
-  margin: 0 auto var(--space-sm) auto; /* Center horizontally, add some margin below */
-  /* Ensure no unintended borders or backgrounds */
-  border: none;
-  background: none;
+.site-title a {
+  color: var(--primary-text);
+  text-decoration: none;
+  border-bottom: none;
 }
 
-/* --- REMOVED SITE TITLE STYLES --- */
-/* .site-title { ... } */
-/* .site-title a { ... } */
-/* .site-title a:hover { ... } */
+.site-title a:hover {
+  border-bottom: none;
+}
 
-/* --- REMOVED SUB-HEADLINE STYLES --- */
-/* .sub-headline { ... } */
-
+.sub-headline {
+  font-family: 'Inter', 'Open Sans', Arial, sans-serif;
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--body-text);
+  text-align: center;
+  margin-bottom: 15px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-style: normal;
+}
 
 /* ---------------- */
 /* NAVIGATION       */
@@ -264,11 +248,10 @@ a:hover {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 10px 0; /* Padding top/bottom */
-  margin-bottom: 15px; /* Space below nav */
+  padding: 10px 0;
+  margin-bottom: 20px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  /* Navigation font remains Inter */
   font-family: 'Inter', 'Open Sans', Arial, sans-serif;
 }
 
@@ -455,11 +438,10 @@ a:hover {
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 38em; /* Keep max-width for readability */
+  max-width: 38em;
   margin: 0 auto;
 }
 
-/* Hero title will now inherit Poppins from the h1 rule */
 .hero-title {
   font-size: var(--text-2xl);
   margin-bottom: var(--space-sm);
@@ -469,26 +451,15 @@ a:hover {
   line-height: 1.25;
 }
 
-/* --- MODIFIED HERO SUBTITLE --- */
-/* Hero subtitle uses Inter, which is fine */
 .hero-subtitle {
-  /* Layout styles */
-  max-width: 38em; /* Keep max-width for readability */
-  margin: 0 auto var(--space-md) auto; /* Center and add bottom margin */
-  text-align: center; /* Ensure centered text */
-
-  /* Apply styles from .sub-headline for visual match */
-  font-family: 'Inter', 'Open Sans', Arial, sans-serif; /* Match font */
-  font-size: var(--text-base); /* Match font size */
-  font-weight: 400; /* Match font weight */
-  color: var(--body-text); /* Match color */
-  letter-spacing: normal; /* Match letter spacing */
-  text-transform: none; /* Match text transform */
-  font-style: normal; /* Change from italic to normal */
-  line-height: 1.7; /* Match body line height */
+  font-size: var(--text-lg);
+  max-width: 38em;
+  margin: 0 auto;
+  color: var(--body-text);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.6;
 }
-/* --- END MODIFIED HERO SUBTITLE --- */
-
 
 .hero-trust-signals {
   margin-top: var(--space-md);
@@ -625,7 +596,6 @@ a:hover {
   color: white;
 }
 
-/* Category card header h3 will now use Poppins */
 .category-card-header h3 {
   margin: 0;
   font-weight: 700;
@@ -707,7 +677,6 @@ a:hover {
   padding-right: var(--space-md);
 }
 
-/* Newsletter h2 will now use Poppins */
 .newsletter-content h2 {
   margin-top: 0;
   font-size: var(--text-xl);
@@ -755,9 +724,6 @@ a:hover {
   box-shadow: var(--shadow-sm);
 }
 
-
-
-
 .newsletter-form {
   width: 100%;
   display: flex;
@@ -786,10 +752,6 @@ a:hover {
   width: 100%;
   margin-top: var(--space-xs);
 }
-
-
-
-
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
@@ -892,7 +854,7 @@ hr {
   border: 0;
   height: 1px;
   background-color: #D8D8D8; /* Consider using a variable */
-  margin: 15px 0; /* Reduced from 25px */
+  margin: 25px 0;
 }
 
 /* Blockquotes */
@@ -984,20 +946,12 @@ footer {
     padding: var(--space-xl) var(--space-md);
   }
 
-  .hero-title { /* Target hero title */
+  .hero-title, h1 {
     font-size: calc(var(--text-2xl) * 0.85);
   }
-  /* Removed h1.site-title from this rule as it no longer exists */
 
   h2 {
     font-size: calc(var(--text-xl) * 0.9);
-  }
-
-  /* Responsive monogram size (medium screens) */
-  .monogram-logo {
-    width: 350px;
-    /* --- REMOVED HEIGHT --- */
-    /* height: 150px; */
   }
 }
 
@@ -1023,15 +977,13 @@ footer {
     padding: var(--space-lg) var(--space-sm);
   }
 
-  .hero-title { /* Target hero title */
+  .hero-title, h1 {
     font-size: calc(var(--text-2xl) * 0.7);
   }
-  /* Removed h1.site-title from this rule as it no longer exists */
 
-  /* Adjust hero subtitle size on smaller screens if needed */
-  /* .hero-subtitle {
-    font-size: calc(var(--text-base) * 0.95);
-  } */
+  .hero-subtitle {
+    font-size: calc(var(--text-lg) * 0.85);
+  }
 
   .newsletter-section {
     padding: var(--space-md);
@@ -1066,108 +1018,4 @@ footer {
   }
   /* --- END RESPONSIVE STYLES --- */
 
-  /* Responsive monogram size (small screens) */
-  .monogram-logo {
-    width: 350px;
-    /* --- REMOVED HEIGHT --- */
-    /* height: 120px; */
-  }
-
 }
-
-
-
-
-/* --- Newsletter Form Enhancements --- */
-
-.newsletter-form {
-  display: flex; /* Align input and button horizontally */
-  align-items: center; /* Vertically align items */
-  gap: 0.5rem; /* Space between input and button */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  max-width: 500px; /* Optional: constrain max width */
-  /* margin-top: 1rem; */ /* Add some space above the form */
-}
-
-.newsletter-form input[type="email"] {
-  flex-grow: 1; /* Allow input to take available space */
-  padding: 0.75rem 1rem; /* Adjust padding for better feel */
-  border: 1px solid #ccc; /* Standard border */
-  border-radius: 4px; /* Slightly rounded corners */
-  font-size: 1rem; /* Match base font size */
-  line-height: 1.5;
-  min-width: 200px; /* Ensure it doesn't get too small */
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075); /* Subtle inner shadow */
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.newsletter-form input[type="email"]:focus {
-  border-color: #555; /* Darker border on focus */
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(85, 85, 85, 0.25); /* Focus ring like buttons */
-}
-
-/* Apply button styles to the submit input */
-.newsletter-form input[type="submit"].button {
-  /* Inherits styles from .button */
-  /* Add any specific overrides if needed */
-  padding-top: 0.75rem; /* Match email input padding */
-  padding-bottom: 0.75rem; /* Match email input padding */
-  white-space: nowrap; /* Prevent text wrapping */
-  flex-shrink: 0; /* Prevent button from shrinking */
-}
-
-/* --- Layout for Newsletter Sections on About/Page --- */
-
-/* Use a wrapper for the form and text in specific sections */
-.newsletter-signup-block {
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: flex-start; /* Align items to the start (left) */
-  gap: 1rem; /* Space between heading, paragraph, and form */
-  padding: 1.5rem; /* Add some padding */
-  border: 1px solid #eee; /* Optional: subtle border */
-  border-radius: 5px; /* Optional: rounded corners */
-  background-color: #f9f9f9; /* Optional: light background */
-  max-width: 600px; /* << Constrain the width */
-  margin-top: 2rem; /* Space above the block */
-  margin-bottom: 2rem; /* Space below the block */
-}
-
-/* Optional: Center the block if desired */
-/*
-.newsletter-page-signup,
-.newsletter-post-signup,
-.newsletter-category-signup {
- display: flex;
- justify-content: center;
-}
-*/
-
-/* Adjustments for the homepage newsletter section if needed */
-.newsletter-section .newsletter-form-container .newsletter-form {
-  margin-top: 1rem; /* Ensure space below the image */
-  max-width: none; /* Override max-width if needed here */
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-  .newsletter-form {
-    flex-direction: column; /* Stack vertically on small screens */
-    align-items: stretch; /* Make input/button full width */
-  }
-
-  .newsletter-form input[type="email"] {
-     min-width: 0; /* Reset min-width */
-  }
-
-   .newsletter-form input[type="submit"].button {
-    width: 100%; /* Make button full width */
-  }
-
-  .newsletter-signup-block {
-     max-width: 100%; /* Allow full width on smaller screens */
-     padding: 1rem;
-  }
-}
-
