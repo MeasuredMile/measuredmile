@@ -24,12 +24,14 @@
     </div>
   </article>
   {% if page.show_newsletter_signup|default(true) %}
-  <div class="newsletter-signup-block"> <h3>Stay Connected</h3>
-    <p>Join the Measured Mile newsletter for thoughtful content on digital wellbeing and intentional living.</p>
+  <div class="newsletter-signup-block"> <h3>Let's Stay Connected</h3>
+    <p>My newsletter is how I share new thoughts without the algorithmic middlemen. As someone who studies digital culture academically but still struggles with it personally, I promise content that's thoughtful, practical, and never overwhelming.</p>
     <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
       <input type="email" id="bd-email-page" name="email" placeholder="Enter your email" required aria-label="Email Address">
-      <input type="submit" value="Subscribe" class="button"> <input type="hidden" name="tag" value="page-signup"> <input type="hidden" value="1" name="embed"/>
+      <input type="submit" value="I'm Interested" class="button"> <input type="hidden" name="tag" value="page-signup"> <input type="hidden" value="1" name="embed"/>
     </form>
+    <p class="newsletter-promise"><i class="fas fa-shield-alt"></i>Completely independent with no advertising or tracking. Your privacy is respected here.</p>
+
   </div>
 {% endif %}
 

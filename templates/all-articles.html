@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}All Articles | {{ site.title }}{% endblock %}
+{% block description %}A full archive listing all articles published on {{ site.title }}.{% endblock %}
+
+{% block content %}
+<article class="page all-articles-page">
+  <header class="page-header">
+    <h1 class="page-title">All Articles</h1>
+  </header>
+
+  <div class="page-content">
+    <p>Browse the complete archive of articles below, listed newest first.</p>
+
+    <ul class="full-article-list">
+      {# ** UPDATED LOOP ** #}
+      {# 1. Get all lists of posts from the site.all_posts dictionary values #}
+      {# 2. Combine them into a single flat list using sum(start=[]) #}
+      {# 3. Sort the combined list by the 'date' attribute within 'metadata', newest first #}
+      {% set all_sorted_posts = site.all_posts.values() | sum(start=[]) | sort(attribute='metadata.date', reverse=true) %}
+
+      {% for post in all_sorted_posts %}
+      <li>
+        <a href="{{ root_path }}{{ post.url|lstrip('/') }}index.html">{{ post.metadata.title }}</a>
+        {% if post.metadata.date %}
+        <span class="article-list-date">{{ post.metadata.date|date_format }}</span>
+        {% endif %}
+      </li>
+      {% else %}
+      <li>No articles found.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</article>
+{% endblock %}

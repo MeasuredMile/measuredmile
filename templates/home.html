@@ -101,47 +101,40 @@
 <!-- Recent Articles Section - Improved for Scanning -->
 <section class="recent-articles home-section">
   <h2>Recent Articles</h2>
-  <div class="articles-grid">
-    {% for post in site.recent_posts[:6] %}
-      <div class="article-card">
-        <div class="article-image">
-          {% if post.metadata.featured_image %}
-            <img src="{{ root_path }}{{ post.metadata.featured_image|lstrip('/') }}" alt="{{ post.metadata.featured_image_alt|default(post.metadata.title) }}">
-          {% else %}
-            {% if loop.index is divisibleby(3) %}
-              <img src="{{ root_path }}static/images/analog-desk.jpg" alt="A desk with notebooks and a cup of tea, no electronics in sight">
-            {% elif loop.index is divisibleby(2) %}
-              <img src="{{ root_path }}static/images/board-games.jpg" alt="A collection of books and a vintage board game">
-            {% else %}
-              <img src="{{ root_path }}static/images/digital-detox.jpg" alt="A person reading a book in a hammock, away from devices">
-            {% endif %}
+
+  {# START: New List Structure #}
+  <ul class="recent-articles-list">
+    {# Loop through the 10 most recent posts #}
+    {% for post in site.recent_posts[:10] %}
+      <li>
+        {# Icon Image (already modified) #}
+        <img
+          src="{{ root_path }}{{ post.metadata.featured_image|default('static/images/digital-detox.jpg')|lstrip('/') }}"
+          alt="{{ post.metadata.featured_image_alt|default(post.metadata.title) }}"
+          class="recent-post-icon"
+          loading="lazy"
+        >
+        {# START: Added wrapper for title and date #}
+        <div class="post-list-meta">
+          {# Article Title Link #}
+          <a href="{{ root_path }}{{ post.url|lstrip('/') }}index.html">{{ post.metadata.title }}</a>
+          {# START: Added Date Span #}
+          {% if post.metadata.date %}
+          <span class="post-list-date">{{ post.metadata.date|date_format }}</span>
           {% endif %}
+          {# END: Added Date Span #}
         </div>
-        <div class="article-content">
-          {% if post.metadata.category %}
-            <span class="category-tag" data-category="{{ post.metadata.category }}">{{ site.category_meta[post.metadata.category].title }}</span>
-          {% endif %}
-          <h3><a href="{{ root_path }}{{ post.url|lstrip('/') }}index.html">{{ post.metadata.title }}</a></h3>
-          {% if post.metadata.excerpt %}
-            <p class="excerpt">{{ post.metadata.excerpt }}</p>
-          {% endif %}
-          <div class="article-meta">
-            {% if post.metadata.date %}
-              <span class="post-date">{{ post.metadata.date|date_format }}</span>
-            {% endif %}
-            {% if site.features.show_reading_time and post.metadata.reading_time %}
-              <span class="reading-time">{{ post.metadata.reading_time }} min read</span>
-            {% endif %}
-          </div>
-        </div>
-      </div>
+        {# END: Added wrapper for title and date #}
+      </li>
     {% endfor %}
-  </div>
-  <div class="view-more">
-    <a href="{{ root_path }}start-here/index.html" class="button">Browse All Articles</a>
+  </ul>
+  {# END: New List Structure #}
+
+  {# Updated container class for the button #}
+  <div class="view-all-articles">
+    <a href="{{ root_path }}/all-articles/" class="button">Browse All Articles</a>
   </div>
 </section>
-
 
 
 
@@ -149,19 +142,20 @@
   <div class="newsletter-container">
     <div class="newsletter-content">
       <h2>Join My Newsletter</h2>
-      <p>Get monthly insights on digital wellbeing, technology ethics, and intentional living delivered directly to your inbox. No algorithms, no tracking, just human-to-human thoughts.</p>
+      <p>Get practical strategies for reclaiming your digital life delivered straight to your inbox. No algorithms, no tracking – just thoughtful ideas from a law professor who's figuring this out alongside you.</p>
       <ul class="newsletter-benefits">
-        <li><i class="fas fa-check"></i> Curated news and resources you won't find on the blog</li>
-        <li><i class="fas fa-check"></i> Early access to new guides and articles</li>
-        <li><i class="fas fa-check"></i> A Community of Likeminded People</li>
+        <li><i class="fas fa-check"></i> Exclusive thoughts I don't share anywhere else</li>
+        <li><i class="fas fa-check"></i> Hand-picked resources that actually respect your attention</li>
+        <li><i class="fas fa-check"></i> Immediate access to my eBook, "AI for a Quieter Life"</li>
+        <li><i class="fas fa-check"></i> Bi-weekly delivery – because I respect your inbox as much as mine</li>
       </ul>
-      <p class="newsletter-promise"><i class="fas fa-shield-alt"></i> I respect your privacy and will never share your email. Unsubscribe anytime.</p>
+      <p class="newsletter-promise"><i class="fas fa-shield-alt"></i>Completely independent with no advertising or tracking. Your privacy is respected here—in both principle and practice.</p>
     </div>
     <div class="newsletter-form-container">
       <img src="{{ root_path }}static/images/newsletter.jpg" alt="A peaceful desk setup with a notebook and cup of tea" class="newsletter-image">
 
       <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
-        <input type="email" id="bd-email-home" name="email" placeholder="Enter your email" required aria-label="Email Address"> <input type="submit" value="Subscribe" class="button"> <input type="hidden" name="tag" value="homepage-signup"> <input type="hidden" value="1" name="embed"/>
+        <input type="email" id="bd-email-home" name="email" placeholder="Enter your email" required aria-label="Email Address"> <input type="submit" value="Count Me In" class="button"> <input type="hidden" name="tag" value="homepage-signup"> <input type="hidden" value="1" name="embed"/>
       </form>
       </div>
   </div>

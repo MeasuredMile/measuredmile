@@ -35,5 +35,4 @@ date: 2025-04-22 # Updated date
 
 <p>Thanks for stopping by and reading a bit about the story behind this place.</p>
 
-*Measured Mile is completely independent – no ads, no tracking, nothing to sell. Your privacy is respected here, period.*
-
+    
