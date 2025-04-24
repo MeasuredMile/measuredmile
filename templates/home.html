@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Educational Hero Section -->
+<section class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">Feeling overwhelmed by digital noise? Me too.</h1>
+    <p class="hero-subtitle">Hi, I'm Michael. Even as someone who studies tech, I often feel lost in the constant pings and notifications. If you're also trying to find a more intentional way to live with technology – without ditching it completely – you're in the right place. Measured Mile is my ad-free space where I share what I'm learning, figuring things out one step at a time. No perfection, just practical ideas for real life.</p>
+    <div class="hero-cta">
+      <a href="{{ root_path }}start-here/index.html" class="button primary-button">Start Here</a>
+      <a href="{{ root_path }}newsletter/index.html" class="button secondary-button">Subscribe</a>
+    </div>
+    <div class="hero-trust-signals">
+      <p class="trust-text"><i class="fas fa-calendar-alt"></i> Updated weekly with fresh perspectives</p>
+      <p class="trust-text"><i class="fas fa-check-circle"></i> Ad-free and independent</p> 
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Enhanced Featured Content Section -->
+<section class="featured-content home-featured">
+  <h2>Featured Articles</h2>
+  <div class="featured-grid">
+    {% if site.featured_posts %}
+      {% set featured_count = 0 %}
+      {% for post_path in site.featured_posts %}
+        {% if featured_count < 3 %}  <!-- Limit to 3 posts -->
+          {% set category = post_path.split('/')[0] %}
+          {% set slug = post_path.split('/')[1] %}
+          
+          {% for post in site.all_posts[category] if post.metadata.slug == slug %}
+            <div class="featured-card {% if featured_count == 0 %}featured-main{% else %}featured-secondary{% endif %}">
+              <div class="featured-image">
+                {% if post.metadata.featured_image %}
+                  <img src="{{ root_path }}{{ post.metadata.featured_image|lstrip('/') }}" alt="{{ post.metadata.featured_image_alt|default(post.metadata.title) }}">
+                {% else %}
+                  <img src="{{ root_path }}static/images/digital-detox.jpg" alt="A person reading a book in a hammock, away from devices">
+                {% endif %}
+              </div>
+              <div class="featured-text">
+                <span class="category-label" data-category="{{ category }}">{{ site.category_meta[category].title }}</span>
+                <h3><a href="{{ root_path }}{{ post.url|lstrip('/') }}index.html">{{ post.metadata.title }}</a></h3>
+                {% if post.metadata.excerpt %}
+                  <p class="excerpt">{{ post.metadata.excerpt }}</p>
+                {% endif %}
+                <div class="card-meta">
+                  {% if post.metadata.date %}
+                    <span class="post-date">{{ post.metadata.date|date_format }}</span>
+                  {% endif %}
+                  {% if site.features.show_reading_time and post.metadata.reading_time %}
+                    <span class="reading-time">{{ post.metadata.reading_time }} min read</span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% set featured_count = featured_count + 1 %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <!-- Fallback to recent posts if no featured posts are specified -->
+      {% for post in site.recent_posts[:3] %}
+        <div class="featured-card {% if loop.first %}featured-main{% else %}featured-secondary{% endif %}">
+          <div class="featured-image">
+            {% if post.metadata.featured_image %}
+              <img src="{{ root_path }}{{ post.metadata.featured_image|lstrip('/') }}" alt="{{ post.metadata.featured_image_alt|default(post.metadata.title) }}">
+            {% else %}
+              <img src="{{ root_path }}static/images/digital-detox.jpg" alt="A person reading a book in a hammock, away from devices">
+            {% endif %}
+          </div>
+          <div class="featured-text">
+            {% if post.metadata.category %}
+              <span class="category-label" data-category="{{ post.metadata.category }}">{{ site.category_meta[post.metadata.category].title }}</span>
+            {% endif %}
+            <h3><a href="{{ root_path }}{{ post.url|lstrip('/') }}index.html">{{ post.metadata.title }}</a></h3>
+            {% if post.metadata.excerpt %}
+              <p class="excerpt">{{ post.metadata.excerpt }}</p>
+            {% endif %}
+            <div class="card-meta">
+              {% if post.metadata.date %}
+                <span class="post-date">{{ post.metadata.date|date_format }}</span>
+              {% endif %}
+              {% if site.features.show_reading_time and post.metadata.reading_time %}
+                <span class="reading-time">{{ post.metadata.reading_time }} min read</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+
+
+
+<!-- Recent Articles Section - Improved for Scanning -->
+<section class="recent-articles home-section">
+  <h2>Recent Articles</h2>
+  <div class="articles-grid">
+    {% for post in site.recent_posts[:6] %}
+      <div class="article-card">
+        <div class="article-image">
+          {% if post.metadata.featured_image %}
+            <img src="{{ root_path }}{{ post.metadata.featured_image|lstrip('/') }}" alt="{{ post.metadata.featured_image_alt|default(post.metadata.title) }}">
+          {% else %}
+            {% if loop.index is divisibleby(3) %}
+              <img src="{{ root_path }}static/images/analog-desk.jpg" alt="A desk with notebooks and a cup of tea, no electronics in sight">
+            {% elif loop.index is divisibleby(2) %}
+              <img src="{{ root_path }}static/images/board-games.jpg" alt="A collection of books and a vintage board game">
+            {% else %}
+              <img src="{{ root_path }}static/images/digital-detox.jpg" alt="A person reading a book in a hammock, away from devices">
+            {% endif %}
+          {% endif %}
+        </div>
+        <div class="article-content">
+          {% if post.metadata.category %}
+            <span class="category-tag" data-category="{{ post.metadata.category }}">{{ site.category_meta[post.metadata.category].title }}</span>
+          {% endif %}
+          <h3><a href="{{ root_path }}{{ post.url|lstrip('/') }}index.html">{{ post.metadata.title }}</a></h3>
+          {% if post.metadata.excerpt %}
+            <p class="excerpt">{{ post.metadata.excerpt }}</p>
+          {% endif %}
+          <div class="article-meta">
+            {% if post.metadata.date %}
+              <span class="post-date">{{ post.metadata.date|date_format }}</span>
+            {% endif %}
+            {% if site.features.show_reading_time and post.metadata.reading_time %}
+              <span class="reading-time">{{ post.metadata.reading_time }} min read</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="view-more">
+    <a href="{{ root_path }}start-here/index.html" class="button">Browse All Articles</a>
+  </div>
+</section>
+
+
+
+
+<!-- Enhanced Newsletter Section -->
+<section class="newsletter-section">
+  <div class="newsletter-container">
+    <div class="newsletter-content">
+      <h2>Join My Newsletter</h2>
+      <p>Get monthly insights on digital wellbeing, technology ethics, and intentional living delivered directly to your inbox. No algorithms, no tracking, just human-to-human thoughts.</p>
+      <ul class="newsletter-benefits">
+        <li><i class="fas fa-check"></i> Curated news and resources you won't find on the blog</li>
+        <li><i class="fas fa-check"></i> Early access to new guides and articles</li>
+        <li><i class="fas fa-check"></i> A Community of Likeminded People</li>
+      </ul>
+      <p class="newsletter-promise"><i class="fas fa-shield-alt"></i> I respect your privacy and will never share your email. Unsubscribe anytime.</p>
+    </div>
+    <div class="newsletter-form-container">
+      <img src="{{ root_path }}static/images/newsletter.jpg" alt="A peaceful desk setup with a notebook and cup of tea" class="newsletter-image">
+ 
+      
+<form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
+  <!-- Keep your existing input fields -->
+  <input type="email" id="email-..." name="email" required>
+  <input type="submit" value="Subscribe">
+  <!-- Add these hidden fields -->
+  <input type="hidden" name="tag" value="[location]-signup">
+  <input type="hidden" value="1" name="embed"/>
+</form>
+      
+      
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

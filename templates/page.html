@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ site.title }}{% endblock %}
+{% block description %}{{ page.description|default(site.description) }}{% endblock %}
+
+{% block content %}
+  <article class="page">
+    <header class="page-header">
+      <h1 class="page-title">{{ page.title }}</h1>
+      
+      {% if page.featured_image %}
+        <div class="featured-image-container">
+          <img src="{{ root_path }}{{ page.featured_image|lstrip('/') }}" alt="{{ page.featured_image_alt|default(page.title) }}" class="image-with-border">
+          {% if page.featured_image_caption %}
+            <span class="caption">{{ page.featured_image_caption }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
+    </header>
+    
+    <div class="page-content">
+      {{ content|safe }}
+    </div>
+  </article>
+  
+  {% if page.show_newsletter_signup|default(true) %}
+    <div class="newsletter-page-signup category-section">
+      <h3>Stay Connected</h3>
+      <p>Join my newsletter for thoughtful content on digital wellbeing and intentional living.</p>
+      
+      <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
+  <input type="email" id="email-..." name="email" required>
+  <input type="submit" value="Subscribe">
+  <input type="hidden" name="tag" value="[location]-signup">
+  <input type="hidden" value="1" name="embed"/>
+</form>
+      
+      
+    </div>
+  {% endif %}
+{% endblock %}

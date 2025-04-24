@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}About | {{ site.title }}{% endblock %}
+{% block description %}{{ page.description|default("About The Measured Mile - A realist's guide to digital wellbeing and intentional technology use.") }}{% endblock %}
+
+{% block content %}
+<article class="page about-content">
+  <header class="page-header">
+    <h1 class="page-title">{{ page.title }}</h1>
+  </header>
+  
+  <div class="page-content">
+    <div class="image-text-flow">
+      <div class="image-half">
+        <img src="{{ root_path }}static/images/mile-marker.jpg" alt="A mile marker sign along a quiet country road">
+        <span class="caption">The measured mile: a journey of intentional steps</span>
+      </div>
+      <div class="text-half">
+        <p>I started this project on a Tuesday afternoon in my campus office, after closing yet another barrage of notifications that had derailed my train of thought for the third time that hour.</p>
+        
+        <p>As a law professor specializing in technology law and digital culture, I understand the systems at play—how apps are engineered to hijack our attention, how terms of service are drafted to benefit companies rather than users, and how algorithms are designed to keep us scrolling just a little longer. But knowing these mechanisms didn't make me immune to their effects.</p>
+      </div>
+    </div>
+    
+    <!-- Rest of your content here, using standard paragraph tags -->
+    <p>The Measured Mile grew from my own struggle to create a healthier relationship with technology while acknowledging its inevitable place in modern life. I realized that while completely disconnecting isn't realistic for most of us...</p>
+    
+    <!-- Newsletter CTA -->
+    <div class="about-cta">
+      <h3>Join the Journey</h3>
+      <p>Subscribe to my newsletter for exclusive content and resources on digital wellbeing.</p>
+      <a href="{{ root_path }}newsletter/index.html" class="button">Subscribe to the Newsletter</a>
+    </div>
+    
+    <p class="about-footer-note">The Measured Mile is completely independent with no advertising or tracking. Your privacy is respected here—in both principle and practice.</p>
+  </div>
+</article>
+{% endblock %}

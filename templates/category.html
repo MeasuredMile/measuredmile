@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="category-header">
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="category-description">{{ page.description }}</p>
+    {% endif %}
+  </div>
+  
+  {% if page.content %}
+    <div class="category-intro">
+      {{ content|safe }}
+    </div>
+  {% endif %}
+  
+  {% if page.featured_posts %}
+    <div class="category-section">
+      <h2>Featured Articles</h2>
+      {% for post_id in page.featured_posts %}
+        {% for post in page.posts %}
+          {% if post.metadata.slug == post_id %}
+            <div class="updated-item">
+              <a href="{{ root_path }}{{ post.url|lstrip('/') }}index.html">{{ post.metadata.title }}</a>
+              {% if post.metadata.date %}
+                <span class="updated-date">{{ post.metadata.date|date_format }}</span>
+              {% endif %}
+            </div>
+            {% if loop.first %}
+              {% if post.metadata.featured_image %}
+                <div class="featured-image-container">
+                  <img src="{{ root_path }}{{ post.metadata.featured_image|lstrip('/') }}" alt="{{ post.metadata.featured_image_alt|default(post.metadata.title) }}" style="max-width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                  {% if post.metadata.featured_image_caption %}
+                    <span class="caption">{{ post.metadata.featured_image_caption }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  {% endif %}
+  
+  <div class="category-section">
+    <h2>All {{ page.title }} Articles</h2>
+    {% if page.posts %}
+      <ul class="post-list">
+        {% for post in page.posts %}
+          <li class="post-item">
+            <a href="{{ root_path }}{{ post.url|lstrip('/') }}index.html" class="post-link">{{ post.metadata.title }}</a>
+            {% if post.metadata.date %}
+              <span class="post-date">{{ post.metadata.date|date_format }}</span>
+            {% endif %}
+            {% if post.metadata.excerpt %}
+              <p class="post-excerpt">{{ post.metadata.excerpt }}</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No articles yet. Check back soon!</p>
+    {% endif %}
+  </div>
+  
+  <div class="newsletter-category-signup">
+    <h3>Stay Updated on {{ page.title }}</h3>
+    <p>Join my newsletter to get notified when I publish new content in this category.</p>
+    
+ 
+ <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
+  <!-- Keep your existing input fields -->
+  <input type="email" id="email-..." name="email" required>
+  <input type="submit" value="Subscribe">
+  <!-- Add these hidden fields -->
+  <input type="hidden" name="tag" value="[location]-signup">
+  <input type="hidden" value="1" name="embed"/>
+</form>
+ 
+  </div>
+{% endblock %}
