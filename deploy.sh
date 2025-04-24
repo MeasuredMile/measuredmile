@@ -51,6 +51,10 @@ fi
 # Create .nojekyll file to prevent Jekyll processing
 touch output/.nojekyll
 
+# Create/Update CNAME file for your custom domain
+echo "measuredmile.com" > output/CNAME
+echo -e "${GREEN}Added CNAME file for measuredmile.com${NC}"
+
 # Create/Update CNAME file if you have a custom domain
 if [ -n "$CUSTOM_DOMAIN" ]; then
     echo "$CUSTOM_DOMAIN" > output/CNAME
