@@ -118,17 +118,6 @@ h2 {
   margin-bottom: 0.75em;
 }
 
-/* Decorative line after h2 */
-h2::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: linear-gradient(to right, var(--slate-blue), var(--terracotta));
-  margin-top: var(--space-xs);
-  border-radius: 2px;
-}
-
 h3 {
   font-size: var(--text-lg);
   margin-top: 1.5em;
@@ -1329,4 +1318,104 @@ footer {
   .newsletter-signup-block h3 {
       font-size: calc(var(--text-lg) * 0.9); /* Slightly smaller heading */
   }
+}
+
+
+
+
+/* Find this rule and update width/height */
+.recent-post-icon {
+  width: 65px;         /* UPDATED size */
+  height: 65px;        /* UPDATED size */
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: var(--space-md);
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Add these new rules (or modify if .post-list-meta exists) */
+.post-list-meta {
+  display: flex;
+  flex-direction: column; /* Stack title and date vertically */
+  justify-content: center; /* Center vertically if needed */
+}
+
+.post-list-date {
+  display: block; /* Make it a block element */
+  font-size: var(--text-sm); /* Use smaller text size */
+  color: var(--meta-text); /* Use meta text color */
+  margin-top: 0.25rem; /* Add small space above the date */
+  line-height: 1.3;
+}
+
+/* Optional: Adjustments for smaller screens if the icon size was changed there too */
+@media (max-width: 600px) {
+  .recent-post-icon {
+    width: 50px; /* Example: adjust mobile size if desired, maybe smaller than desktop */
+    height: 50px;
+    margin-right: var(--space-sm);
+  }
+  /* You might not need to change .post-list-date style for mobile unless desired */
+}
+
+
+
+
+.recent-articles-list li {
+  display: flex;         /* Aligns children (image and text) horizontally */
+  align-items: center;   /* Vertically centers the image and text */
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid #eee;
+}
+
+
+/* -------------------------- */
+/* Full Article List Page     */
+/* -------------------------- */
+
+.all-articles-page .page-content {
+  max-width: 46em; /* Or your preferred content width */
+  margin: 0 auto;
+}
+
+.full-article-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: var(--space-lg);
+}
+
+.full-article-list li {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid #eee; /* Separator line */
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  justify-content: space-between; /* Push title and date apart */
+  align-items: center; /* Vertically align items */
+  gap: var(--space-sm); /* Gap between title and date if they wrap */
+}
+
+.full-article-list li:first-child {
+  border-top: 1px solid #eee; /* Add top border to first item */
+}
+
+.full-article-list a {
+  color: var(--primary-text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: none;
+  flex-grow: 1; /* Allow title to take available space */
+  padding-right: var(--space-sm); /* Add space before date */
+}
+
+.full-article-list a:hover {
+  color: var(--terracotta);
+}
+
+.article-list-date {
+  font-size: var(--text-sm);
+  color: var(--meta-text);
+  white-space: nowrap; /* Prevent date from wrapping */
+  flex-shrink: 0; /* Prevent date from shrinking */
 }

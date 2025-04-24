@@ -66,14 +66,21 @@
     <a href="/start-here/" class="nav-link highlight"><i class="fas fa-map-signs"></i> Start Here</a>
     <div class="dropdown">
       <a href="#" class="nav-link dropdown-button"><i class="fas fa-book-open"></i> Content <i class="fas fa-chevron-down"></i></a>
-      <div class="dropdown-content">
+   
+    <div class="dropdown-content">
+        
+        <a href="./all-articles/index.html"><i class="fas fa-list-ul"></i> All Articles</a> 
+        <hr class="dropdown-divider">
+        
+
+        
         <a href="/reclaim-attention/"><i class="fas fa-brain"></i> Reclaim Your Attention</a>
         <a href="/choose-better-tech/"><i class="fas fa-glasses"></i> Choose Better Tech</a>
         <a href="/find-balance/"><i class="fas fa-heart"></i> Find Digital Balance</a>
         <a href="/protect-privacy/"><i class="fas fa-user-shield"></i> Protect Your Privacy</a>
         <a href="/offline-living/"><i class="fas fa-seedling"></i> Rediscover Offline Living</a>
       </div>
-    </div>
+    
     <a href="/newsletter/" class="nav-link"><i class="fas fa-envelope"></i> Newsletter</a>
   </div>
   <button class="mobile-toggle">
@@ -167,37 +174,40 @@
 <!-- Recent Articles Section - Improved for Scanning -->
 <section class="recent-articles home-section">
   <h2>Recent Articles</h2>
-  <div class="articles-grid">
+
+  
+  <ul class="recent-articles-list">
     
-      <div class="article-card">
-        <div class="article-image">
+    
+      <li>
+        
+        <img
+          src="./static/images/delete-facebook.jpg"
+          alt="a drawing of the facebook icon as a tombstone emerging from a phone"
+          class="recent-post-icon"
+          loading="lazy"
+        >
+        
+        <div class="post-list-meta">
           
-            <img src="./static/images/delete-facebook.jpg" alt="a drawing of the facebook icon as a tombstone emerging from a phone">
+          <a href="./reclaim-attention/how-to-delete-facebook/index.html">How to Permanently Delete Facebook in 2025</a>
+          
+          
+          <span class="post-list-date">March 28, 2025</span>
+          
           
         </div>
-        <div class="article-content">
-          
-            <span class="category-tag" data-category="reclaim-attention">Reclaim Your Attention</span>
-          
-          <h3><a href="./reclaim-attention/how-to-delete-facebook/index.html">How to Permanently Delete Facebook in 2025</a></h3>
-          
-            <p class="excerpt">A practical, step-by-step guide</p>
-          
-          <div class="article-meta">
-            
-              <span class="post-date">March 28, 2025</span>
-            
-            
-          </div>
-        </div>
-      </div>
+        
+      </li>
     
-  </div>
-  <div class="view-more">
-    <a href="./start-here/index.html" class="button">Browse All Articles</a>
+  </ul>
+  
+
+  
+  <div class="view-all-articles">
+    <a href=".//all-articles/" class="button">Browse All Articles</a>
   </div>
 </section>
-
 
 
 
@@ -205,19 +215,20 @@
   <div class="newsletter-container">
     <div class="newsletter-content">
       <h2>Join My Newsletter</h2>
-      <p>Get monthly insights on digital wellbeing, technology ethics, and intentional living delivered directly to your inbox. No algorithms, no tracking, just human-to-human thoughts.</p>
+      <p>Get practical strategies for reclaiming your digital life delivered straight to your inbox. No algorithms, no tracking – just thoughtful ideas from a law professor who's figuring this out alongside you.</p>
       <ul class="newsletter-benefits">
-        <li><i class="fas fa-check"></i> Curated news and resources you won't find on the blog</li>
-        <li><i class="fas fa-check"></i> Early access to new guides and articles</li>
-        <li><i class="fas fa-check"></i> A Community of Likeminded People</li>
+        <li><i class="fas fa-check"></i> Exclusive thoughts I don't share anywhere else</li>
+        <li><i class="fas fa-check"></i> Hand-picked resources that actually respect your attention</li>
+        <li><i class="fas fa-check"></i> Immediate access to my eBook, "AI for a Quieter Life"</li>
+        <li><i class="fas fa-check"></i> Bi-weekly delivery – because I respect your inbox as much as mine</li>
       </ul>
-      <p class="newsletter-promise"><i class="fas fa-shield-alt"></i> I respect your privacy and will never share your email. Unsubscribe anytime.</p>
+      <p class="newsletter-promise"><i class="fas fa-shield-alt"></i>Completely independent with no advertising or tracking. Your privacy is respected here—in both principle and practice.</p>
     </div>
     <div class="newsletter-form-container">
       <img src="./static/images/newsletter.jpg" alt="A peaceful desk setup with a notebook and cup of tea" class="newsletter-image">
 
       <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
-        <input type="email" id="bd-email-home" name="email" placeholder="Enter your email" required aria-label="Email Address"> <input type="submit" value="Subscribe" class="button"> <input type="hidden" name="tag" value="homepage-signup"> <input type="hidden" value="1" name="embed"/>
+        <input type="email" id="bd-email-home" name="email" placeholder="Enter your email" required aria-label="Email Address"> <input type="submit" value="Count Me In" class="button"> <input type="hidden" name="tag" value="homepage-signup"> <input type="hidden" value="1" name="embed"/>
       </form>
       </div>
   </div>
