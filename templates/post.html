@@ -103,13 +103,13 @@
     </footer>
   </article>
   
-  <div class="newsletter-post-signup category-section">
-   
-   <div class="newsletter-signup-block"> <h3>Enjoyed This Article?</h3>
-  <p>Subscribe to the Measured Mile newsletter for more thoughtful content on digital wellbeing and intentional living.</p>
-  <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
-    <input type="email" id="bd-email-post-{{ page.slug }}" name="email" placeholder="Enter your email" required aria-label="Email Address"> <input type="submit" value="Subscribe" class="button"> <input type="hidden" name="tag" value="post-{{ page.slug }}-signup"> <input type="hidden" value="1" name="embed"/>
-  </form>
-</div>
-</div>
+  
+<section class="newsletter-section">
+
+    <div class="newsletter-form-container">
+      {# Use the include tag to insert the form HTML #}
+      {% include 'partials/kit_newsletter_form.html' %}
+    </div>
+
+</section>
 {% endblock %}

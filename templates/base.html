@@ -30,7 +30,8 @@
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ root_path }}feed.xml">
 
-  <link rel="icon" href="{{ root_path }}static/images/favicon.ico">
+  <link rel="icon" type="image/png" href="{{ root_path }}static/images/favicon.png">
+
   <link rel="apple-touch-icon" href="{{ root_path }}static/images/apple-touch-icon.png">
 
   {% if site.analytics and site.analytics.enabled %}
@@ -63,15 +64,14 @@
         {# --- MODIFICATION START --- #}
         {# Wrap the logo image in a link to the homepage #}
         <a href="{{ root_path }}index.html" aria-label="Homepage">
-          <img src="{{ root_path }}static/images/monogram-logo.png" alt="{{ site.title }} Logo" class="monogram-logo">
-        </a>
+    		<img src="{{ root_path }}static/images/measured-mile-logo.svg" alt="{{ site.title }} Logo" class="monogram-logo">
+		</a>
         {# --- MODIFICATION END --- #}
       </div>
 
       {# Include navigation partial #}
       {% include 'partials/navigation.html' %}
 
-      <hr>
     </header>
 
     <main>

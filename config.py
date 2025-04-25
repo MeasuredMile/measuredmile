@@ -14,11 +14,14 @@ SITE_EMAIL = "hello@measuredmile.com"
 
 # Categories - these match your folder structure and URLs
 CATEGORIES = [
-    "reclaim-attention",
-    "choose-better-tech",
-    "find-balance",
-    "protect-privacy",
-    "offline-living"
+    "attention-focus",
+    "mindful-technology-use",
+    "privacy-digital-independence",
+    "healthy-digital-culture",
+    "analog-offline-life",
+    "ai-emerging-technologies",
+    "preservation-legacy",
+    "personal-reflections-experiments"
 ]
 
 # Featured content for the homepage
@@ -30,32 +33,48 @@ FEATURED_POSTS = [
 
 # Category metadata (for display on the site)
 CATEGORY_META = {
-    "reclaim-attention": {
-        "title": "Reclaim Your Attention",
-        "description": "Practical strategies for breaking free from digital overwhelm and creating healthier relationships with your devices.",
+    "attention-focus": {
+        "title": "Attention & Focus",
+        "description": "Reclaim your mental bandwidth in a world of constant pings.",
         "icon": "fas fa-brain"
     },
-    "choose-better-tech": {
-        "title": "Choose Better Tech",
-        "description": "Reviews and recommendations for technology that respects your attention and enhances your life without stealing your focus.",
-        "icon": "fas fa-glasses"
+    "mindful-technology-use": {
+        "title": "Mindful Technology Use",
+        "description": "Use tech on your terms: find sustainable, low-stress ways to live with your devices.",
+        "icon": "fas fa-mobile-alt"
     },
-    "find-balance": {
-        "title": "Find Digital Balance",
-        "description": "Strategies for protecting your mental health, improving focus, and reducing anxiety in our always-connected world.",
-        "icon": "fas fa-heart"
+    "privacy-digital-independence": {
+        "title": "Privacy & Digital Independence",
+        "description": "Take control of your data with practical privacy guides and open-source alternatives.",
+        "icon": "fas fa-shield-alt"
     },
-    "protect-privacy": {
-        "title": "Protect Your Privacy",
-        "description": "Practical guides to understanding and protecting your data with straightforward steps anyone can follow.",
-        "icon": "fas fa-user-shield"
+    "healthy-digital-culture": {
+        "title": "Healthy Digital Culture",
+        "description": "Build real connections and ethical digital habits for social media, gaming, and communication.",
+        "icon": "fas fa-users"
     },
-    "offline-living": {
-        "title": "Rediscover Offline Living",
-        "description": "Finding joy in analog activities, physical media, and creating a more deliberate relationship with technology.",
-        "icon": "fas fa-seedling"
+    "analog-offline-life": {
+        "title": "Analog & Offline Life",
+        "description": "Rediscover presence and creativity with physical media, handwriting, and screen-free hobbies.",
+        "icon": "fas fa-book-open"
+    },
+    "ai-emerging-technologies": {
+        "title": "AI & Emerging Technologies",
+        "description": "Harness AI and emerging tech intentionally to offload busywork and enhance your life.",
+        "icon": "fas fa-robot"
+    },
+    "preservation-legacy": {
+        "title": "Preservation & Legacy",
+        "description": "Preserve your digital memories and plan your digital estate with archiving and legacy tips.",
+        "icon": "fas fa-archive"
+    },
+    "personal-reflections-experiments": {
+        "title": "Personal Reflections & Experiments",
+        "description": "Join personal challenges, monthly experiments, and reflections on digital wellbeing journeys.",
+        "icon": "fas fa-lightbulb"
     }
 }
+
 
 # Navigation menu
 NAVIGATION = [

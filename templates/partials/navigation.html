@@ -1,28 +1,23 @@
-<div class="main-navigation">
-  <div class="horizontal-menu">
-    <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
-    <a href="/about/" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
-    <a href="/start-here/" class="nav-link highlight"><i class="fas fa-map-signs"></i> Start Here</a>
-    <div class="dropdown">
-      <a href="#" class="nav-link dropdown-button"><i class="fas fa-book-open"></i> Content <i class="fas fa-chevron-down"></i></a>
-   
-    <div class="dropdown-content">
-        {# ----- START: Added Link and Divider ----- #}
-        <a href="{{ root_path }}all-articles/index.html"><i class="fas fa-list-ul"></i> All Articles</a> {# Added icon example #}
-        <hr class="dropdown-divider">
-        {# ----- END: Added Link and Divider ----- #}
-
-        {# Existing category links below #}
-        <a href="/reclaim-attention/"><i class="fas fa-brain"></i> Reclaim Your Attention</a>
-        <a href="/choose-better-tech/"><i class="fas fa-glasses"></i> Choose Better Tech</a>
-        <a href="/find-balance/"><i class="fas fa-heart"></i> Find Digital Balance</a>
-        <a href="/protect-privacy/"><i class="fas fa-user-shield"></i> Protect Your Privacy</a>
-        <a href="/offline-living/"><i class="fas fa-seedling"></i> Rediscover Offline Living</a>
-      </div>
-    
-    <a href="/newsletter/" class="nav-link"><i class="fas fa-envelope"></i> Newsletter</a>
-  </div>
-  <button class="mobile-toggle">
-    <i class="fas fa-bars"></i> Menu
-  </button>
-</div>
+<nav class="main-navigation">
+  <ul class="horizontal-menu">
+    <li><a href="{{ root_path }}index.html" class="nav-link">Home</a></li>
+    <li class="dropdown">
+      <span class="nav-link dropdown-button">Categories <i class="fas fa-chevron-down"></i></span>
+      <ul class="dropdown-content">
+        <li><a href="{{ root_path }}attention-focus/index.html">Attention &amp; Focus</a></li>
+        <li><a href="{{ root_path }}mindful-technology-use/index.html">Mindful Technology Use</a></li>
+        <li><a href="{{ root_path }}privacy-digital-independence/index.html">Privacy &amp; Digital Independence</a></li>
+        <li><a href="{{ root_path }}healthy-digital-culture/index.html">Healthy Digital Culture</a></li>
+        <li><a href="{{ root_path }}analog-offline-life/index.html">Analog &amp; Offline Life</a></li>
+        <li><a href="{{ root_path }}ai-emerging-technologies/index.html">AI &amp; Emerging Technologies</a></li>
+        <li><a href="{{ root_path }}preservation-legacy/index.html">Preservation &amp; Legacy</a></li>
+        <li><a href="{{ root_path }}personal-reflections-experiments/index.html">Personal Reflections &amp; Experiments</a></li>
+      </ul>
+    </li>
+    <li><a href="{{ root_path }}start-here/index.html" class="nav-link">Start Here</a></li>
+    <li><a href="{{ root_path }}resources/index.html" class="nav-link">Resources</a></li>
+    <li><a href="{{ root_path }}about/index.html" class="nav-link">About</a></li>
+    <li><a href="{{ root_path }}newsletter/index.html" class="nav-link">Subscribe</a></li>
+  </ul>
+  <button class="mobile-toggle"><i class="fas fa-bars"></i></button>
+</nav>

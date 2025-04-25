@@ -63,19 +63,13 @@
     {% endif %}
   </div>
   
-  <div class="newsletter-category-signup">
-    <h3>Stay Updated on {{ page.title }}</h3>
-    <p>Join my newsletter to get notified when I publish new content in this category.</p>
-    
- 
- <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
-  <!-- Keep your existing input fields -->
-  <input type="email" id="email-..." name="email" required>
-  <input type="submit" value="Subscribe">
-  <!-- Add these hidden fields -->
-  <input type="hidden" name="tag" value="[location]-signup">
-  <input type="hidden" value="1" name="embed"/>
-</form>
- 
-  </div>
+<section class="newsletter-section">
+
+    <div class="newsletter-form-container">
+      {# Use the include tag to insert the form HTML #}
+      {% include 'partials/kit_newsletter_form.html' %}
+    </div>
+
+</section>
+  
 {% endblock %}

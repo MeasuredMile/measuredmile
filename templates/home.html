@@ -137,7 +137,17 @@
 </section>
 
 
+<section class="newsletter-section">
 
+    <div class="newsletter-form-container">
+      {# Use the include tag to insert the form HTML #}
+      {% include 'partials/kit_newsletter_form.html' %}
+    </div>
+
+</section>
+
+
+<!--
 <section class="newsletter-section">
   <div class="newsletter-container">
     <div class="newsletter-content">
@@ -160,6 +170,6 @@
       </div>
   </div>
 </section>
-
+-->
 
 {% endblock %}

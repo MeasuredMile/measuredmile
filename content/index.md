@@ -1,5 +1,5 @@
 ---
-title: The Measured Mile
+title: Measured Mile
 template: home.html
 ---
 
