@@ -1,0 +1,243 @@
+/* Cross-Browser Compatible Navigation for The Measured Mile */
+
+/* Base navigation container */
+.main-navigation {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-align: center;
+}
+
+/* Horizontal menu for desktop */
+.horizontal-menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Navigation links */
+.nav-link {
+  display: inline-block;
+  color: #7F9AB2; /* Muted slate blue */
+  text-decoration: none;
+  padding: 8px 10px; /* Reduced horizontal padding */
+  margin: 0 2px; /* Reduced margin */
+  font-weight: 500;
+  font-size: 0.95em;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Prevent link text from wrapping */
+}
+
+.nav-link:hover {
+  color: #5A7A92; /* Darker blue */
+  border-bottom: 2px solid #5A7A92;
+}
+
+.nav-link i {
+  margin-right: 4px; /* Reduced icon margin */
+  font-size: 0.9em;
+}
+
+/* Highlight for "Start Here" */
+.nav-link.highlight {
+  font-weight: 600;
+  color: #C89A8A; /* Muted terracotta */
+}
+
+.nav-link.highlight:hover {
+  color: #A77A6A; /* Darker terracotta */
+  border-bottom: 2px solid #A77A6A;
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  cursor: pointer;
+}
+
+.dropdown-button .fa-chevron-down {
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #F8F6F2; /* Alabaster */
+  min-width: 220px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2px;
+  text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #5A5A5A; /* Medium gray */
+  text-decoration: none;
+  display: block;
+  padding: 10px 16px;
+  font-weight: normal;
+  transition: background-color 0.2s;
+}
+
+.dropdown-content a:hover {
+  background-color: #EFEDE9; /* Lighter alabaster */
+  color: #333;
+}
+
+/* Mobile toggle button (hidden on desktop) */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #7F9AB2;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 8px 15px;
+  margin: 0 auto;
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .horizontal-menu {
+    display: none;
+    text-align: left;
+  }
+  
+  .horizontal-menu.active {
+    display: block;
+  }
+  
+  .nav-link {
+    display: block;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+  }
+  
+  .nav-link:hover {
+    border-bottom: 1px solid #eee;
+    background-color: #F8F6F2;
+  }
+  
+  .dropdown {
+    display: block;
+  }
+  
+  .dropdown-content {
+    position: static;
+    display: none;
+    box-shadow: none;
+    width: 100%;
+    transform: none;
+    margin-left: 20px;
+    margin-top: 0;
+  }
+  
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
+}
+
+/* Active state for current page */
+.nav-link.active {
+  border-bottom: 2px solid #7F9AB2;
+}
+
+/* Firefox-specific fixes */
+@-moz-document url-prefix() {
+  .horizontal-menu {
+    text-align: center !important;
+  }
+  
+  .nav-link {
+    display: inline-block !important;
+  }
+  
+  .dropdown {
+    display: inline-block !important;
+  }
+}
+
+.mobile-toggle {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: transparent;
+  border: none;
+  color: #7F9AB2;
+  font-size: 1.6rem;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.main-navigation {
+  position: relative;
+  padding-top: 50px;
+}
+
+.horizontal-menu {
+  list-style: none;
+  padding-left: 0;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background-color: #F8F6F2;
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.horizontal-menu.active {
+  display: flex;
+}
+
+.horizontal-menu .nav-link {
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-content {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+
+@media (min-width: 769px) {
+  .mobile-toggle {
+    display: none;
+  }
+  .horizontal-menu {
+    display: flex !important;
+    flex-direction: row;
+    position: static;
+    padding: 0;
+    box-shadow: none;
+  }
+}

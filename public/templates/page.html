@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ site.title }}{% endblock %}
+{% block description %}{{ page.description|default(site.description) }}{% endblock %}
+
+{% block content %}
+  <article class="page">
+    <header class="page-header">
+      <h1 class="page-title">{{ page.title }}</h1>
+      
+       {% if page.show_newsletter_top|default(true) %}
+
+		{% endif %}
+
+
+  
+      {% if page.featured_image %}
+        <div class="featured-image-container">
+          <img src="{{ root_path }}{{ page.featured_image|lstrip('/') }}" alt="{{ page.featured_image_alt|default(page.title) }}" class="image-with-border">
+          {% if page.featured_image_caption %}
+            <span class="caption">{{ page.featured_image_caption }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
+        
+    </header>
+    
+    <div class="page-content">
+      {{ content|safe }}
+    </div>
+  </article>
+  {% if page.show_newsletter_signup|default(true) %}
+  
+<section class="newsletter-section">
+
+    <div class="newsletter-form-container">
+      {# Use the include tag to insert the form HTML #}
+      {% include 'partials/kit_newsletter_form.html' %}
+    </div>
+
+</section>
+  
+<!--  <div class="newsletter-signup-block"> <h3>Let's Stay Connected</h3>
+    <p>My newsletter is how I share new thoughts without the algorithmic middlemen. As someone who studies digital culture academically but still struggles with it personally, I promise content that's thoughtful, practical, and never overwhelming.</p>
+    <form action="https://buttondown.email/api/emails/embed-subscribe/measuredmile" method="post" class="newsletter-form" target="_blank">
+      <input type="email" id="bd-email-page" name="email" placeholder="Enter your email" required aria-label="Email Address">
+      <input type="submit" value="I'm Interested" class="button"> <input type="hidden" name="tag" value="page-signup"> <input type="hidden" value="1" name="embed"/>
+    </form>
+    <p class="newsletter-promise"><i class="fas fa-shield-alt"></i>Completely independent with no advertising or tracking. Your privacy is respected here.</p>
+
+  </div>
+-->
+{% endif %}
+
+  
+  
+  
+{% endblock %}
