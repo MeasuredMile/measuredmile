@@ -4,9 +4,8 @@
 .main-navigation {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  padding: 5px 0; /* Keep reduced top/bottom padding */
-  /* *** MODIFIED MARGIN-BOTTOM FOR DESKTOP *** */
-  margin-bottom: 35px; /* Increased from 15px to add more space below on desktop */
+  padding: 10px 0;
+  margin-bottom: 20px;
   font-family: 'Open Sans', Arial, sans-serif;
   text-align: center;
 }
@@ -18,8 +17,6 @@
   flex-wrap: wrap;
   margin: 0 auto;
   text-align: center;
-  list-style: none; /* ADDED: Remove bullets in all views */
-  padding-left: 0; /* ADDED: Remove default padding */
 }
 
 /* Navigation links */
@@ -84,8 +81,6 @@
   transform: translateX(-50%);
   margin-top: 2px;
   text-align: left;
-  list-style: none; /* ADDED: Remove bullets in all views */
-  padding-left: 0; /* ADDED: Remove default padding */
 }
 
 .dropdown:hover .dropdown-content {
@@ -106,6 +101,66 @@
   color: #333;
 }
 
+/* Mobile toggle button (hidden on desktop) */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #7F9AB2;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 8px 15px;
+  margin: 0 auto;
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .horizontal-menu {
+    display: none;
+    text-align: left;
+  }
+  
+  .horizontal-menu.active {
+    display: block;
+  }
+  
+  .nav-link {
+    display: block;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+  }
+  
+  .nav-link:hover {
+    border-bottom: 1px solid #eee;
+    background-color: #F8F6F2;
+  }
+  
+  .dropdown {
+    display: block;
+  }
+  
+  .dropdown-content {
+    position: static;
+    display: none;
+    box-shadow: none;
+    width: 100%;
+    transform: none;
+    margin-left: 20px;
+    margin-top: 0;
+  }
+  
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
+}
+
 /* Active state for current page */
 .nav-link.active {
   border-bottom: 2px solid #7F9AB2;
@@ -116,19 +171,18 @@
   .horizontal-menu {
     text-align: center !important;
   }
-
+  
   .nav-link {
     display: inline-block !important;
   }
-
+  
   .dropdown {
     display: inline-block !important;
   }
 }
 
-/* Mobile toggle button - positioned top left */
 .mobile-toggle {
-  position: fixed; /* Using fixed position to ensure it's at the top left of viewport */
+  position: absolute;
   top: 15px;
   left: 15px;
   background: transparent;
@@ -136,89 +190,49 @@
   color: #7F9AB2;
   font-size: 1.6rem;
   cursor: pointer;
-  z-index: 9999; /* Very high z-index to ensure it's on top */
-  display: none; /* Hidden by default, shown in media query */
+  z-index: 101;
 }
 
-/* Media queries for mobile */
-@media (max-width: 768px) {
-  /* *** ADDED MOBILE-SPECIFIC MARGIN *** */
-  .main-navigation {
-    margin-bottom: 5px; /* Keep reduced space below nav on mobile */
-  }
-
-  /* Show mobile toggle button */
-  .mobile-toggle {
-    display: block; /* Make visible on mobile */
-  }
-
-  /* Push down site header to make room for hamburger */
-  .site-header-content {
-    padding-top: 40px; /* Add space at top */
-  }
-
-  /* Menu styles when mobile */
-  .horizontal-menu {
-    display: none; /* Hidden by default */
-    flex-direction: column;
-    position: fixed; /* Fixed position dropdown */
-    top: 60px; /* Position below hamburger */
-    left: 0;
-    width: 100%;
-    background-color: #F8F6F2;
-    padding: 10px 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 9998; /* High z-index but below toggle */
-  }
-
-  /* Active class for when menu is open */
-  .horizontal-menu.active {
-    display: flex;
-  }
-
-  /* Style for nav links in mobile view */
-  .horizontal-menu .nav-link {
-    display: block;
-    width: 100%;
-    padding: 12px 20px;
-    border-bottom: 1px solid #eee;
-    margin: 0;
-    text-align: left;
-  }
-
-  /* Style for dropdown in mobile */
-  .dropdown {
-    width: 100%;
-    display: block;
-  }
-
-  /* Reset dropdown content positioning */
-  .dropdown-content {
-    position: static;
-    display: none;
-    width: 100%;
-    transform: none;
-    margin-left: 20px;
-    margin-top: 0;
-    box-shadow: none;
-  }
-
-  /* Show dropdown content when active */
-  .dropdown.active .dropdown-content {
-    display: block;
-  }
+.main-navigation {
+  position: relative;
+  padding-top: 50px;
 }
 
-/* Desktop styles to reset mobile settings */
+.horizontal-menu {
+  list-style: none;
+  padding-left: 0;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background-color: #F8F6F2;
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.horizontal-menu.active {
+  display: flex;
+}
+
+.horizontal-menu .nav-link {
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-content {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+
 @media (min-width: 769px) {
   .mobile-toggle {
-    display: none; /* Hide on desktop */
+    display: none;
   }
-
-  .site-header-content {
-    padding-top: 0; /* Reset padding */
-  }
-
   .horizontal-menu {
     display: flex !important;
     flex-direction: row;
