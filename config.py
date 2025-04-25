@@ -26,9 +26,7 @@ CATEGORIES = [
 
 # Featured content for the homepage
 FEATURED_POSTS = [
-    "reclaim-attention/how-to-delete-facebook",
-    "choose-better-tech/best-ereaders-2025",
-    "find-balance/managing-notification-anxiety"
+    "healthy-digital-culture/the-false-promise-of-convergence",
 ]
 
 # Category metadata (for display on the site)

@@ -4,6 +4,7 @@ date: 2025-04-25
 featured_image: /static/images/everything-device.png
 featured_image_alt: Smartphone illustrating tech convergence
 featured_image_caption: Our smartphones embody the promise—and pitfalls—of technological convergence.
+featured: true
 ---
 
 Do you remember the early 2000s, when your pockets were filled with separate devices—a phone, an MP3 player, maybe a digital camera, and possibly even a PDA? Perhaps you recall juggling gadgets, untangling headphone wires, or anxiously hunting for outlets to recharge everything. Fast forward to today: one device—the smartphone—now handles nearly all aspects of our digital lives. When Steve Jobs unveiled the [iPhone in 2007](https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/), he promised "three revolutionary products" in one: a phone, an iPod, and an internet communicator. It felt magical. Yet, this technological convergence, seductive as it was, reshaped our brains and lives in unforeseen ways.
