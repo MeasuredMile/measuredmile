@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wagon Wheel</title>
+  <style>
+    body {
+      background: #f5f5f5;
+      color: #333;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 2em;
+      }
+      
+      #mandala {
+        width: 100%;
+        height: auto;
+        max-width: 450px;
+      }
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    
+    .game-area {
+      text-align: center;
+      margin: 30px 0;
+    }
+    
+    #mandala {
+      display: block;
+      margin: 0 auto 20px;
+      width: 450px;
+      height: 450px;
+    }
+    
+    .controls {
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    #resetBtn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    #resetBtn:hover {
+      background: #c0392b;
+    }
+    
+    .instructions-section {
+      margin: 40px 0;
+    }
+    
+    .instructions-section h2 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+    
+    .rules {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .rules ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+    
+    .rules li {
+      margin: 10px 0;
+    }
+    
+    .examples-section {
+      margin: 40px 0;
+    }
+    
+    .examples-container {
+      position: relative;
+      overflow: hidden;
+      margin: 20px auto;
+      max-width: 450px;
+    }
+    
+    .examples-slider {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .example {
+      flex: 0 0 100%;
+      padding: 0;
+      background: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .example-image {
+      width: 100%;
+      aspect-ratio: 1;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      font-size: 1.2em;
+      color: #666;
+    }
+    
+    .example p {
+      text-align: center;
+      margin: 15px 20px;
+      color: #666;
+    }
+    
+    .examples-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+      gap: 10px;
+    }
+    
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    
+    .nav-dot.active {
+      background: #666;
+    }
+    
+    .examples-buttons {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    
+    .nav-button {
+      pointer-events: all;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      margin: 0 10px;
+    }
+    
+    .nav-button:hover {
+      background: rgba(0,0,0,0.7);
+    }
+    
+    @media (max-width: 768px) {
+      .examples-container {
+        max-width: 100%;
+      }
+    }
+    
+    .parity-rule {
+      color: #e74c3c;
+      font-weight: bold;
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    /* Game styles */
+    .wedge { cursor: pointer; }
+    .wedge.fixed { pointer-events: none; }
+    path {
+      stroke: #ccc;
+      stroke-width: 1;
+      transition: fill 0.3s, stroke-width 0.3s;
+    }
+    .wedge.black path { fill: #e0e0e0; }
+    .wedge.white path { fill: #f8f8f8; }
+    .wedge:not(.fixed).black:hover path { fill: #d0d0d0; }
+    .wedge:not(.fixed).white:hover path { fill: #efefef; }
+    .wedge.fixed path {
+      stroke: #3a3;
+      stroke-width: 4;  /* Increased and consistent width for all fixed cells */
+    }
+    .wedge:not(.fixed) path.error {
+      fill: #fdd !important;
+      stroke: #c00 !important;
+      stroke-width: 2;
+    }
+    .shape-text {
+      font-size: 24px;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+      transition: fill 0.3s;
+    }
+    
+    @media (max-width: 768px) {
+      .shape-text {
+        font-size: 20px;
+      }
+    }
+    
+    #winMessage {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      text-align: center;
+      z-index: 1000;
+      font-size: 24px;
+      color: #333;
+    }
+    
+    .copyright {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px 0;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Wagon Wheel</h1>
+    
+    <div class="game-area">
+      <svg id="mandala" viewBox="0 0 450 450"></svg>
+      <div class="controls">
+        <button id="resetBtn">Reset Puzzle</button>
+      </div>
+    </div>
+    
+    <div class="instructions-section">
+      <h2>How to play</h2>
+      <div class="rules">
+        <p>Place symbols in the wagon wheel grid following these rules:</p>
+        <ul>
+          <li>Each ring must contain exactly one ▲, ●, ◆, and ★</li>
+          <li>Each spoke must contain exactly one ▲, ●, ◆, and ★</li>
+          <li>Each symbol must appear exactly twice on black cells and twice on white cells</li>
+        </ul>
+        <p>Four cells are already filled to help you get started. Click empty cells to cycle through the symbols.</p>
+      </div>
+    </div>
+    
+    <div class="examples-section">
+      <h2>Examples</h2>
+      
+      <div class="examples-container">
+        <div class="examples-slider">
+          <div class="example">
+            <div class="example-image">
+              <img src="wagon-wheel-example-1.png" alt="Example 1 - Starting position" style="width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <p>1. The game starts with four pre-filled cells (green borders). These clues help you solve the puzzle.</p>
+          </div>
+          
+          <div class="example">
+            <div class="example-image">
+              <img src="wagon-wheel-example-2.png" alt="Example 2 - Valid move" style="width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <p>2. Click cells to cycle through symbols. Each ring and spoke must have one of each symbol.</p>
+          </div>
+          
+          <div class="example">
+            <div class="example-image">
+              <img src="wagon-wheel-example-3.png" alt="Example 3 - Invalid move" style="width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <p>3. Invalid placements are shown in red. Check which rule is being violated.</p>
+          </div>
+          
+          <div class="example">
+            <div class="example-image">
+              <img src="wagon-wheel-example-4.png" alt="Example 4 - Completed puzzle" style="width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <p>4. Win by correctly filling all cells according to the rules!</p>
+          </div>
+        </div>
+        
+        <div class="examples-buttons">
+          <button class="nav-button prev">❮</button>
+          <button class="nav-button next">❯</button>
+        </div>
+      </div>
+      
+      <div class="examples-nav">
+        <button class="nav-dot active"></button>
+        <button class="nav-dot"></button>
+        <button class="nav-dot"></button>
+        <button class="nav-dot"></button>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      Copyright © 2025 Michael Mattioli (Wagon Wheel Games)
+    </div>
+  </div>
+  
+  <div id="winMessage">
+    <h2>🎉 Congratulations! 🎉</h2>
+    <p>You've solved the Wagon Wheel puzzle!</p>
+    <button id="playAgainBtn">Play Again</button>
+  </div>
+  
+  <script>
+  (function(){
+    const svgNS = "http://www.w3.org/2000/svg";
+    const rings = 4, spokes = 4;
+    const center = { x: 225, y: 225 };
+    const outerR = 200;
+    const ringW = outerR / rings;
+    const radii = Array.from({length:rings+1}, (_,i) => i*ringW);
+
+    const shapeKeys   = ['triangle','circle','diamond','star'];
+    const shapeSymbols= { triangle:'▲', circle:'●', diamond:'◆', star:'★' };
+    const shapeColors = {
+      triangle:'#A56CC1', circle:'#A5C16C',
+      diamond:'#C1A56C', star:'#6CA5C1'
+    };
+
+    // Utility: shuffle array in place
+    function shuffle(a){
+      for(let i=a.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [a[i],a[j]]=[a[j],a[i]];
+      }
+    }
+    // Check row r for shape
+    function rowHas(grid,r,shape){
+      return grid[r].includes(shape);
+    }
+    // Check column c for shape
+    function colHas(grid,c,shape){
+      return grid.some(row=>row[c]===shape);
+    }
+    // Count parity on a finished grid
+    function countParity(grid){
+      const black={}, white={};
+      shapeKeys.forEach(s=>{black[s]=0;white[s]=0;});
+      for(let r=0;r<rings;r++){
+        for(let c=0;c<spokes;c++){
+          const s = grid[r][c];
+          if(!s) continue;
+          // board-color rule: (ring+spoke) %2===0 ⇒ black
+          const isBlack = ((r+1)+(c+1))%2===0;
+          (isBlack ? black : white)[s]++;
+        }
+      }
+      return {blackCounts:black, whiteCounts:white};
+    }
+
+    // 1️⃣ Generate a random valid solution by backtracking
+    function generateSolution(){
+      const G = Array.from({length:rings}, ()=> Array(spokes).fill(null));
+      function backtrack(pos=0){
+        if(pos === rings*spokes) return true;
+        const r = Math.floor(pos/spokes), c = pos%spokes;
+        const options = shapeKeys.slice();
+        shuffle(options);
+        for(const s of options){
+          if(!rowHas(G,r,s) && !colHas(G,c,s)){
+            G[r][c] = s;
+            if(backtrack(pos+1)) return true;
+          }
+        }
+        G[r][c] = null;
+        return false;
+      }
+      // Try until parity rule also holds
+      while(true){
+        for(let i=0;i<rings;i++) G[i].fill(null);
+        if(backtrack()){
+          const {blackCounts, whiteCounts} = countParity(G);
+          if(shapeKeys.every(s => blackCounts[s]===2 && whiteCounts[s]===2))
+            return G;
+        }
+      }
+    }
+
+    // 2️⃣ Build TRUE_SOLUTION map (1-based keys)
+    const solGrid = generateSolution();
+    const TRUE_SOLUTION = {};
+    for(let r=0;r<rings;r++){
+      TRUE_SOLUTION[r+1] = {};
+      for(let c=0;c<spokes;c++){
+        TRUE_SOLUTION[r+1][c+1] = solGrid[r][c];
+      }
+    }
+
+    // 3️⃣ Pick 4 random clues
+    function pickClues(){
+      const used = new Set(), clues = [];
+      while(clues.length < 4){
+        const r = Math.floor(Math.random()*rings);
+        const c = Math.floor(Math.random()*spokes);
+        const key = r + ',' + c;
+        if(used.has(key)) continue;
+        used.add(key);
+        clues.push({ ring:r+1, spoke:c+1, shape: solGrid[r][c] });
+      }
+      return clues;
+    }
+    const startingPositions = pickClues();
+
+    // 4️⃣ Build SVG & attach handlers
+    const svg = document.getElementById('mandala');
+    function isBlack(r,s){ return ((r+s)%2)===0; }
+
+    for(let r=1;r<=rings;r++){
+      for(let s=1;s<=spokes;s++){
+        const g = document.createElementNS(svgNS,'g');
+        g.classList.add('wedge');
+        g.dataset.ring = r; g.dataset.spoke = s;
+        g.dataset.shape = 'none';
+        g.classList.add(isBlack(r,s)?'black':'white');
+
+        // path geometry
+        const θ1 = ((s-1)/spokes)*2*Math.PI - Math.PI/2;
+        const θ2 = ( s   /spokes)*2*Math.PI - Math.PI/2;
+        const rIn = radii[r-1], rOut = radii[r];
+        let d;
+        if(rIn===0){
+          const x2 = center.x + rOut*Math.cos(θ1),
+                y2 = center.y + rOut*Math.sin(θ1),
+                x3 = center.x + rOut*Math.cos(θ2),
+                y3 = center.y + rOut*Math.sin(θ2);
+          d = `M${center.x},${center.y} L${x2},${y2} A${rOut},${rOut} 0 0 1 ${x3},${y3} Z`;
+        } else {
+          const x1 = center.x + rIn*Math.cos(θ1),
+                y1 = center.y + rIn*Math.sin(θ1),
+                x2 = center.x + rOut*Math.cos(θ1),
+                y2 = center.y + rOut*Math.sin(θ1),
+                x3 = center.x + rOut*Math.cos(θ2),
+                y3 = center.y + rOut*Math.sin(θ2),
+                x4 = center.x + rIn*Math.cos(θ2),
+                y4 = center.y + rIn*Math.sin(θ2);
+          d = `M${x1},${y1} L${x2},${y2} A${rOut},${rOut} 0 0 1 ${x3},${y3}` +
+              ` L${x4},${y4} A${rIn},${rIn} 0 0 0 ${x1},${y1} Z`;
+        }
+        const path = document.createElementNS(svgNS,'path');
+        path.setAttribute('d', d);
+        g.appendChild(path);
+
+        // label
+        const text = document.createElementNS(svgNS,'text');
+        const midAngle = (θ1+θ2)/2, midR=(rIn+rOut)/2;
+        text.setAttribute('x', center.x + midR*Math.cos(midAngle));
+        text.setAttribute('y', center.y + midR*Math.sin(midAngle));
+        text.classList.add('shape-text');
+        g.appendChild(text);
+
+        // apply a clue if this cell is in startingPositions
+        const clue = startingPositions.find(p => p.ring==r && p.spoke==s);
+        if(clue){
+          g.dataset.shape = clue.shape;
+          text.textContent = shapeSymbols[clue.shape];
+          text.style.fill    = shapeColors[clue.shape];
+          g.classList.add('fixed');
+        }
+
+        g.addEventListener('click', onWedgeClick);
+        svg.appendChild(g);
+      }
+    }
+
+    document.getElementById('resetBtn').addEventListener('click', resetAll);
+
+    function resetAll(){
+      svg.querySelectorAll('g.wedge').forEach(g=>{
+        const text = g.querySelector('text'),
+              path = g.querySelector('path');
+        path.classList.remove('error');
+        if(g.classList.contains('fixed')){
+          const p = startingPositions.find(p=>p.ring==g.dataset.ring && p.spoke==g.dataset.spoke);
+          g.dataset.shape = p.shape;
+          text.textContent = shapeSymbols[p.shape];
+          text.style.fill = shapeColors[p.shape];
+        } else {
+          g.dataset.shape = 'none';
+          text.textContent = '';
+          text.style.fill = 'none';
+        }
+      });
+    }
+
+    function onWedgeClick(e){
+      const g = e.currentTarget;
+      if(g.classList.contains('fixed')) return;
+      
+      // cycle through shapes including 'none'
+      const currentShape = g.dataset.shape;
+      let nextShape;
+      
+      if (currentShape === 'none') {
+        nextShape = shapeKeys[0]; // start with first shape
+      } else {
+        const currentIdx = shapeKeys.indexOf(currentShape);
+        if (currentIdx === shapeKeys.length - 1) {
+          nextShape = 'none'; // back to 'none' after last shape
+        } else {
+          nextShape = shapeKeys[currentIdx + 1]; // next shape
+        }
+      }
+      
+      g.dataset.shape = nextShape;
+      const txt = g.querySelector('text');
+      txt.textContent = nextShape === 'none' ? '' : shapeSymbols[nextShape];
+      txt.style.fill = nextShape === 'none' ? 'none' : shapeColors[nextShape];
+
+      // clear prior errors
+      svg.querySelectorAll('path.error').forEach(p=>p.classList.remove('error'));
+      // check complete
+      checkComplete();
+    }
+
+    // Final validator: direct comparison to TRUE_SOLUTION
+    function validateCompletePuzzle(){
+      const errs = [];
+      svg.querySelectorAll('g.wedge').forEach(g=>{
+        if(g.classList.contains('fixed')) return;
+        const r = g.dataset.ring, s = g.dataset.spoke,
+              us = g.dataset.shape,
+              cs = TRUE_SOLUTION[r][s];
+        if(us !== cs) errs.push(g);
+      });
+      return errs;
+    }
+
+    function checkComplete(){
+      const all = Array.from(svg.querySelectorAll('g.wedge'));
+      console.log('Checking completion...');
+      console.log('All cells:', all.length);
+      console.log('Cells with none:', all.filter(g=>g.dataset.shape==='none').length);
+      
+      if(all.some(g=>g.dataset.shape==='none')) {
+        console.log('Some cells still empty, returning...');
+        return;
+      }
+      
+      const errors = validateCompletePuzzle();
+      console.log('Errors found:', errors.length);
+      
+      errors.forEach(g=> g.querySelector('path').classList.add('error'));
+      
+      if(errors.length===0){
+        console.log('No errors - showing win message!');
+        document.getElementById('winMessage').style.display = 'block';
+      }
+    }
+
+    // Add event listener for play again button
+    document.getElementById('playAgainBtn').addEventListener('click', () => {
+      document.getElementById('winMessage').style.display = 'none';
+      resetAll();
+    });
+    
+    // Examples slider functionality
+    let currentExample = 0;
+    const examples = document.querySelectorAll('.example');
+    const slider = document.querySelector('.examples-slider');
+    const dots = document.querySelectorAll('.nav-dot');
+    const prevButton = document.querySelector('.nav-button.prev');
+    const nextButton = document.querySelector('.nav-button.next');
+    
+    function showExample(index) {
+      currentExample = index;
+      slider.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+    
+    prevButton.addEventListener('click', () => {
+      currentExample = (currentExample - 1 + examples.length) % examples.length;
+      showExample(currentExample);
+    });
+    
+    nextButton.addEventListener('click', () => {
+      currentExample = (currentExample + 1) % examples.length;
+      showExample(currentExample);
+    });
+    
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showExample(index));
+    });
+    
+    // Touch support for swipe
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    slider.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    slider.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left - next
+          currentExample = (currentExample + 1) % examples.length;
+        } else {
+          // Swipe right - prev
+          currentExample = (currentExample - 1 + examples.length) % examples.length;
+        }
+        showExample(currentExample);
+      }
+    }
+
+  })();
+  </script>
+</body>
+</html>
